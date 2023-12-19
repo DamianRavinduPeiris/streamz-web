@@ -1,6 +1,6 @@
-import React from "react";
 
-import { GitHub } from "@mui/icons-material";
+
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -32,14 +32,24 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Homepage</a>
+              <li >
+                <Link to={'/'}>
+                <a style={{fontWeight:'bold'}}>Home</a>
+                </Link>
               </li>
               <li>
-                <a>Portfolio</a>
+                <Link to={'/explore'}>
+                <a style={{fontWeight:'bold'}}>Explore</a>
+                </Link>
               </li>
               <li>
-                <a>About</a>
+                <a style={{fontWeight:'bold'}}>Signup</a>
+              </li>
+              <li>
+                <a style={{fontWeight:'bold'}}>Login</a>
+              </li>
+              <li>
+                <a style={{fontWeight:'bold'}}>Contact</a>
               </li>
             </ul>
           </div>
