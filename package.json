@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.15.0",
     "@mui/material": "^5.15.0",
     "@mui/styled-engine-sc": "^6.0.0-alpha.8",
+    "kutty": "^0.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.0",
