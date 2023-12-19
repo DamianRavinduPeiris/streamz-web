@@ -33,11 +33,15 @@ export default function useTMDB(url: string): movieType[] {
           };
           movies.push(md);
         });
-        setMovieData(movies);
+        setTimeout(()=>{
+          setMovieData(movies);
+        },100)
+        
       })
       .catch((er) => {
         console.log("error", er);
       });
   }, [url]);
+  
   return movieData;
 }
