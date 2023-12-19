@@ -15,7 +15,7 @@ export default function useTMDB(url: string): movieType[] {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: "Bearer " + import.meta.env.TMDB_AUTH_TOKEN,
+      Authorization: "Bearer  " + import.meta.env.TMDB_AUTH_TOKEN,
     },
   };
   useEffect(() => {
