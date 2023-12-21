@@ -15,8 +15,7 @@ export default function useTMDB(url: string): movieType[] {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer "+import.meta.env.VITE_TMDB_AUTH_TOKEN,
+      Authorization: "Bearer " + import.meta.env.VITE_TMDB_AUTH_TOKEN,
     },
   };
   async function fetchData() {
@@ -30,9 +29,10 @@ export default function useTMDB(url: string): movieType[] {
         overview: movie.overview,
         release_date: movie.release_date,
       };
+
       movieArray.push(movieDataObject);
     });
-    setMovieData(movieArray);
+    setTimeout(() => setMovieData(movieArray), 1000);
   }
   useEffect(() => {
     fetchData();
