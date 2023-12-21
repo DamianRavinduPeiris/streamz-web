@@ -60,11 +60,14 @@ const NavBar = () => {
             </h1>
             
         
+
         </div>
+
         <div className="navbar-end">
+          
           <button className="btn btn-ghost btn-circle"></button>
           <button className="btn btn-ghost btn-circle">
-          <img className="h-10 w-auto" src="https://www.svgrepo.com/show/156861/play-button.svg" alt="" ></img> 
+          <img className="h-50 w-50 m-0.5" src="https://www.svgrepo.com/show/156861/play-button.svg" alt="" ></img> 
           </button>
         </div>
       </div>

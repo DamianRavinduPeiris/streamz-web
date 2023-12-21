@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import useTMDB from "../CustomHooks/useTMDB";
 import { Skeleton } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+
 
 export default function Explore() {
   interface movieType {
@@ -11,10 +14,17 @@ export default function Explore() {
     overview: string;
     release_date: string;
   }
+  const[pageNumber,setPageNumeber] = useState(0)
+  const[md,setMD]=useState<movieType[]>([])
+
+  
 
   let movieData: movieType[] = useTMDB(
     "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
   );
+
+  
+  
 
   console.log("movieData", movieData);
   return (
@@ -44,6 +54,21 @@ export default function Explore() {
                 animation="wave"
               />
             ))}
+      </div>
+      <div className="flex flex-center justify-center align-center">
+      <Stack
+        spacing={2}
+        
+      >
+        <Pagination
+          count={10}
+          onChange={(event, page) => {
+            setPageNumeber(page)
+            
+            
+          }}
+        />
+      </Stack>
       </div>
     </div>
   );
