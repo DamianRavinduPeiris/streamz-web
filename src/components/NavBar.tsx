@@ -1,7 +1,4 @@
-
-
 import { Link } from "react-router-dom";
-
 const NavBar = () => {
   return (
     <div>
@@ -32,42 +29,42 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li >
-                <Link to={'/'}>
-                <a style={{fontWeight:'bold'}}>Home</a>
+              <li>
+                <Link to={"/"}>
+                  <a style={{ fontWeight: "bold" }}>Home</a>
                 </Link>
               </li>
               <li>
-                <Link to={'/explore'}>
-                <a style={{fontWeight:'bold'}}>Explore</a>
+                <Link to={"/explore"}>
+                  <a style={{ fontWeight: "bold" }}>Explore</a>
                 </Link>
               </li>
               <li>
-                <a style={{fontWeight:'bold'}}>Signup</a>
+                <a style={{ fontWeight: "bold" }}>Signup</a>
               </li>
               <li>
-                <a style={{fontWeight:'bold'}}>Login</a>
+                <a style={{ fontWeight: "bold" }}>Login</a>
               </li>
               <li>
-                <a style={{fontWeight:'bold'}}>Contact</a>
+                <a style={{ fontWeight: "bold" }}>Contact</a>
               </li>
             </ul>
           </div>
         </div>
         <div className="navbar-center">
-        <h1 className=" font-bold tracking-tight text-gray-900 sm:text-4xl">
-              S T R E A M Z  
-            </h1>
-            
-        
-
+          <h1 className=" font-bold tracking-tight text-gray-900 sm:text-4xl">
+            S T R E A M Z
+          </h1>
         </div>
 
         <div className="navbar-end">
-          
           <button className="btn btn-ghost btn-circle"></button>
           <button className="btn btn-ghost btn-circle">
-          <img className="h-50 w-50 m-0.5" src="https://www.svgrepo.com/show/156861/play-button.svg" alt="" ></img> 
+            <img
+              className="h-50 w-50 m-0.5"
+              src="https://www.svgrepo.com/show/156861/play-button.svg"
+              alt=""
+            ></img>
           </button>
         </div>
       </div>
