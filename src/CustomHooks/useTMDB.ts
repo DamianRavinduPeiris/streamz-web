@@ -15,33 +15,28 @@ export default function useTMDB(url: string): movieType[] {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZTg5NzZiMzBjOGQ0OTQ5NDRhNzdiMTMyZWE1ZDgyYSIsInN1YiI6IjY0ZDA4ZTE0ODUwOTBmMDEyNWJkNGZmYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.fRYvaT5dx90rtf3fODWbWSD76n8dbs9HWovJ8xEvu8M" 
+      Authorization:
+        "Bearer "+import.meta.env.VITE_TMDB_AUTH_TOKEN,
     },
   };
+  async function fetchData() {
+    let movieArray: movieType[] = [];
+    let res = await axios.get(url, options);
+    res.data.results.map((movie: movieType) => {
+      let movieDataObject: movieType = {
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+        overview: movie.overview,
+        release_date: movie.release_date,
+      };
+      movieArray.push(movieDataObject);
+    });
+    setMovieData(movieArray);
+  }
   useEffect(() => {
-    axios
-      .get(url, options)
-      .then((res) => {
-        let movies: movieType[] = [];
-        res.data.results.map((movie: movieType) => {
-          const md: movieType = {
-            id: movie.id,
-            title: movie.title,
-            poster_path: movie.poster_path,
-            overview: movie.overview,
-            release_date: movie.release_date,
-          };
-          movies.push(md);
-        });
-        setTimeout(()=>{
-          setMovieData(movies);
-        },100)
-        
-      })
-      .catch((er) => {
-        console.log("error", er);
-      });
+    fetchData();
   }, [url]);
-  
+
   return movieData;
 }

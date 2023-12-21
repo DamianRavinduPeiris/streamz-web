@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div>
-      <div className="navbar bg-base-100 ">
+      <div className="navbar  ">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -52,20 +52,23 @@ const NavBar = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <h1 className=" font-bold tracking-tight text-gray-900 sm:text-4xl">
-            S T R E A M Z
-          </h1>
+          <Link to={"/"}>
+            <h1 className=" font-bold tracking-tight text-gray-900 sm:text-4xl">
+              S T R E A M Z
+            </h1>
+          </Link>
         </div>
 
         <div className="navbar-end">
-          <button className="btn btn-ghost btn-circle"></button>
-          <button className="btn btn-ghost btn-circle">
-            <img
-              className="h-50 w-50 m-0.5"
-              src="https://www.svgrepo.com/show/156861/play-button.svg"
-              alt=""
-            ></img>
-          </button>
+          <Link to={"/"}>
+            <button className="btn btn-ghost btn-circle">
+              <img
+                className="h-50 w-50 mr-2"
+                src="https://www.svgrepo.com/show/156861/play-button.svg"
+                alt=""
+              ></img>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

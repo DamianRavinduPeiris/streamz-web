@@ -15,20 +15,25 @@ export default function Explore() {
     overview: string;
     release_date: string;
   }
-  const [pageNumber, setPageNumeber] = useState(0);
+
   const [md, setMD] = useState<movieType[]>([]);
+  const [page, setPageNumber] = useState<number>(1);
 
   let movieData: movieType[] = useTMDB(
-    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=" + page
   );
+console.log("rendering");
+  useEffect(() => {
+    setMD(movieData);
+    console.log("movieData", movieData);
+  }, [movieData, page]);
 
-  console.log("movieData", movieData);
   return (
     <div>
-      {movieData.length <= 0 ? <LinearProgress color="secondary" /> : null}
+      {md.length <= 0 ? <LinearProgress color="secondary" /> : null}
 
       <div className="flex flex-center justify-center align-center flex-wrap m-5">
-        {movieData.length > 0
+        {md.length > 0
           ? movieData.map((movie, elementNumber) => {
               return (
                 <JackInTheBox>
@@ -56,16 +61,19 @@ export default function Explore() {
               />
             ))}
       </div>
-      <div className="flex flex-center justify-center align-center">
-        <Stack spacing={2}>
-          <Pagination
-            count={10}
-            onChange={(event, page) => {
-              setPageNumeber(page);
-            }}
-          />
-        </Stack>
-      </div>
+      <JackInTheBox>
+        <div className="flex flex-center justify-center align-center">
+          <Stack spacing={2}>
+            <Pagination
+              count={100}
+              onChange={(event, page) => {
+                setPageNumber(page);
+                setMD([]);
+              }}
+            />
+          </Stack>
+        </div>
+      </JackInTheBox>
     </div>
   );
 }
