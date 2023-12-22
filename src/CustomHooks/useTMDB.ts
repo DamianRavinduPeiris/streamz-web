@@ -7,7 +7,9 @@ interface movieType {
   poster_path: string;
   overview: string;
   release_date: string;
-  vote_average : number
+  vote_average : number,
+  genre_ids : number[]
+ 
 }
 
 export default function useTMDB(url: string): movieType[] {
@@ -22,6 +24,7 @@ export default function useTMDB(url: string): movieType[] {
   async function fetchData() {
     let movieArray: movieType[] = [];
     let res = await axios.get(url, options);
+    console.log(res)
     res.data.results.map((movie: movieType) => {
       let movieDataObject: movieType = {
         id: movie.id,
@@ -29,7 +32,9 @@ export default function useTMDB(url: string): movieType[] {
         poster_path: movie.poster_path,
         overview: movie.overview,
         release_date: movie.release_date,
-        vote_average: movie.vote_average 
+        vote_average: movie.vote_average,
+        genre_ids: movie.genre_ids
+        
       };
 
       movieArray.push(movieDataObject);

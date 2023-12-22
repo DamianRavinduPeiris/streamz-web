@@ -21,7 +21,10 @@ export default function Explore() {
     overview: string;
     release_date: string;
     vote_average : number;
+    genre_ids : number[];
+    
   }
+  
 
   const [md, setMD] = useState<movieType[]>([]);
   const [page, setPageNumber] = useState<number>(1);
