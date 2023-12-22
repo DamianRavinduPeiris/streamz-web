@@ -7,7 +7,9 @@ import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
 import Alert from "../Aelrts/Alert";
-import BreadCrumb from "../Components/BreadCrumb"
+import BreadCrumb from "../components/BreadCrumb"
+import { Link } from "react-router-dom";
+
 
 
 
@@ -46,6 +48,7 @@ export default function Explore() {
               return (
                 <JackInTheBox>
                   <div className="flex flex-col justify-center items-center">
+                    <Link to="/stream">
                     <motion.img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                       alt={movie.title}
@@ -61,6 +64,7 @@ export default function Explore() {
                         console.log(movie.id);
                       }}
                     />
+                    </Link>
                     <h1 className="font-tilt" style={{ fontSize: "0.8rem" }}>
                       {movie.title}
                     </h1>
