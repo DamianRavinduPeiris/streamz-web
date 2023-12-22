@@ -13,7 +13,7 @@ export default function BreadCrumb(
       <div className="text-md breadcrumbs m-5 font-tilt">
         <ul>
           <li>
-            <Link to={"/"}>{movieName ? <a>Home.</a> : <>Home</>}</Link>
+            {movieName ? <Link to={"/explore"}><a>Explore.</a></Link> : <Link to={"/"}><a>Home.</a></Link>}
           </li>
           <li>{movieName!=null ? <li>Streaming.</li> : <>{name}</>}</li>
           {movieName!=null ? <li>{movieName}</li> : null}

@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Stream from "./pages/Stream";
 
-
 function App() {
   return (
     <>
