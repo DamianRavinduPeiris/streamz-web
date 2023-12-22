@@ -32,7 +32,7 @@ export default function useTMDB(url: string): movieType[] {
 
       movieArray.push(movieDataObject);
     });
-    setTimeout(() => setMovieData(movieArray), 1000);
+    setTimeout(() => setMovieData(movieArray), 100);
   }
   useEffect(() => {
     fetchData();

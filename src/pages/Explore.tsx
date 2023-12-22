@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useTMDB from "../CustomHooks/useTMDB";
 import { Skeleton } from "@mui/material";
+
 import LinearProgress from "@mui/material/LinearProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
+import Alert from "../Aelrts/Alert";
 
 export default function Explore() {
   interface movieType {
@@ -18,35 +20,46 @@ export default function Explore() {
 
   const [md, setMD] = useState<movieType[]>([]);
   const [page, setPageNumber] = useState<number>(1);
+  const [refetch, setRefetchStatus] = useState(false);
 
   let movieData: movieType[] = useTMDB(
     "https://api.themoviedb.org/3/movie/popular?language=en-US&page=" + page
   );
-console.log("rendering");
+  console.log("rendering");
   useEffect(() => {
     setMD(movieData);
+    setRefetchStatus(false);
     console.log("movieData", movieData);
   }, [movieData, page]);
 
   return (
     <div>
-      {md.length <= 0 ? <LinearProgress color="secondary" /> : null}
+      {md.length <= 0 ? <LinearProgress color="info" /> : null}
 
       <div className="flex flex-center justify-center align-center flex-wrap m-5">
         {md.length > 0
           ? movieData.map((movie, elementNumber) => {
               return (
                 <JackInTheBox>
-                  <motion.img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt={movie.title}
-                    className="m-10 rounded-lg"
-                    style={{ width: "200px", height: "300px" }}
-                    key={elementNumber}
-                    initial={{ scale: 0 }}
-                    animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.1 }}
-                  />
+                  <div className="flex flex-col justify-center items-center">
+                    <motion.img
+                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt={movie.title}
+                      className="m-10 rounded-lg shadow-2xl "
+                      style={{ width: "200px", height: "300px" }}
+                      key={elementNumber}
+                      initial={{ scale: 0 }}
+                      animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
+                      transition={{ delay: 0.1 }}
+                      whileHover={{ scale: 1.2 }}
+                      onClick={(e) => {
+                        console.log(movie.id);
+                      }}
+                    />
+                    <h1 className="font-tilt" style={{ fontSize: "0.5rem" }}>
+                      {movie.title}
+                    </h1>
+                  </div>
                 </JackInTheBox>
               );
             })
@@ -62,6 +75,16 @@ console.log("rendering");
             ))}
       </div>
       <JackInTheBox>
+        {refetch ? (
+          <>
+            <div className="flex flex-col justify-center items-center">
+              <h1 className="font-tilt" style={{ fontSize: "2rem" }}>
+                Fetching...
+              </h1>
+              <span className="loading loading-spinner loading-lg text-black m-5"></span>
+            </div>
+          </>
+        ) : null}
         <div className="flex flex-center justify-center align-center">
           <Stack spacing={2}>
             <Pagination
@@ -69,6 +92,7 @@ console.log("rendering");
               onChange={(event, page) => {
                 setPageNumber(page);
                 setMD([]);
+                setRefetchStatus(true);
               }}
             />
           </Stack>

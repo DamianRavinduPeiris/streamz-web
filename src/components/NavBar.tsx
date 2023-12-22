@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div>
-      <div className="navbar  ">
+      <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
             <div

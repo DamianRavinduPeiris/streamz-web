@@ -16,12 +16,12 @@ export default function Footer() {
               alt=""
               style={{ height: "50px", width: "50px" }}
             />
-            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
+            <span className="ml-2 text-xl text-tilt font-bold tracking-wide text-gray-800 uppercase">
               Streamz.
             </span>
           </a>
           <div className="mt-6 lg:max-w-sm">
-            <p className="text-sm text-gray-800">Crafted with ❤️‍🔥 by Damian.</p>
+            <p className="text-gray-800 text-tilt">Crafted with ❤️‍🔥 by Damian.</p>
           </div>
         </div>
         <div className="space-y-2 text-sm">
@@ -29,18 +29,18 @@ export default function Footer() {
             Contact.
           </p>
           <div className="flex">
-            <p className="mr-1 text-gray-800">Phone:</p>
+            <p className="mr-1 text-tilt">Phone:</p>
             <a
               href="tel:850-123-5021"
               aria-label="Our phone"
               title="Our phone"
-              className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
+              className="transition-colors  text-tilt duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
             >
               +94 77 4519 629
             </a>
           </div>
           <div className="flex">
-            <p className="mr-1 text-gray-800">Email:</p>
+            <p className="mr-1 text-gray-800 text-tilt">Email:</p>
             <a
               href="mailto:drpeiris3@gmail.com"
               aria-label="Our email."
@@ -65,7 +65,7 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <span className="text-base font-bold tracking-wide text-gray-900">
+          <span className="text-tilt font-bold tracking-wide text-gray-900">
             We are Social!
           </span>
           <div className="flex items-center mt-1 space-x-3">

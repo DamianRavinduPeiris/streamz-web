@@ -26,7 +26,9 @@ export default function Header() {
             Streamz is a free and open-source streaming platform that allows you
             to watch movies and TV shows.
           </motion.div>
-          <motion.div className="mt-10 flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4" initial={{ scale: 0 }}
+          <motion.div
+            className="mt-10 flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"
+            initial={{ scale: 0 }}
             animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
             transition={{ delay: 0.4 }}
           >
