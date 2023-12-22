@@ -18,6 +18,7 @@ export default function Explore() {
     poster_path: string;
     overview: string;
     release_date: string;
+    vote_average : number;
   }
 
   const [md, setMD] = useState<movieType[]>([]);
@@ -56,11 +57,15 @@ export default function Explore() {
                       transition={{ delay: 0.1 }}
                       whileHover={{ scale: 1.2 }}
                       onClick={(e) => {
+                        localStorage.setItem("movie",JSON.stringify(movie));
                         console.log(movie.id);
                       }}
                     />
-                    <h1 className="font-tilt" style={{ fontSize: "0.5rem" }}>
+                    <h1 className="font-tilt" style={{ fontSize: "0.8rem" }}>
                       {movie.title}
+                    </h1>
+                    <h1 className="font-tilt mt-2" style={{ fontSize: "0.8rem" }}>
+                      ⭐{movie.vote_average}
                     </h1>
                   </div>
                 </JackInTheBox>

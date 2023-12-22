@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Explore from "./pages/Explore";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (

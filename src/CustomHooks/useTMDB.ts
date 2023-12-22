@@ -7,6 +7,7 @@ interface movieType {
   poster_path: string;
   overview: string;
   release_date: string;
+  vote_average : number
 }
 
 export default function useTMDB(url: string): movieType[] {
@@ -28,6 +29,7 @@ export default function useTMDB(url: string): movieType[] {
         poster_path: movie.poster_path,
         overview: movie.overview,
         release_date: movie.release_date,
+        vote_average: movie.vote_average 
       };
 
       movieArray.push(movieDataObject);
