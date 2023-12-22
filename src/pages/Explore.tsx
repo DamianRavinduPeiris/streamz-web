@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useTMDB from "../CustomHooks/useTMDB";
 import { Skeleton } from "@mui/material";
-
 import LinearProgress from "@mui/material/LinearProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
 import Alert from "../Aelrts/Alert";
+import BreadCrumb from "../Components/BreadCrumb"
+
+
 
 export default function Explore() {
   interface movieType {
@@ -35,6 +37,7 @@ export default function Explore() {
   return (
     <div>
       {md.length <= 0 ? <LinearProgress color="info" /> : null}
+      <BreadCrumb name='Explore' movieName={null}/>
 
       <div className="flex flex-center justify-center align-center flex-wrap m-5">
         {md.length > 0

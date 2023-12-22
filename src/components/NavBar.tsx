@@ -63,7 +63,7 @@ const NavBar = () => {
           <Link to={"/"}>
             <button className="btn btn-ghost btn-circle">
               <img
-                className="h-50 w-50 mr-2"
+                className="h-50 w-50 mr-5"
                 src="https://www.svgrepo.com/show/156861/play-button.svg"
                 alt=""
               ></img>
