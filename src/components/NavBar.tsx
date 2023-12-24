@@ -1,12 +1,25 @@
 import { Link } from "react-router-dom";
 import Autocomplete from "@mui/material/Autocomplete";
 import { debounce } from "lodash";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import useTMDB from "../customHooks/useTMDB";
-
+import { TextField } from "@mui/material";
 
 const NavBar = () => {
-  const[movieName,setMovieName]=useState<string>('');
+  const [movieName, setMovieName] = useState<string>("");
+  const [movieNames, setMovieNames] = useState<string[]>([]);
+  const [searchStatus, setSearchStatus] = useState<boolean>(false);
+  const debouncedSearchMovie = debounce(searchMovie, 2000);
+  function searchMovie() {
+    setSearchStatus(true);
+  }
+  const movieData = useTMDB(import.meta.env.VITE_SEARCH_URL + "" + movieName);
+  useEffect(() => {
+    movieData.forEach((movieName) => {
+      setMovieNames((prevMovieNames) => [...prevMovieNames, movieName.title]);
+    });
+  }, [searchStatus]);
+
   return (
     <div>
       <div className="navbar ">
@@ -72,10 +85,29 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end">
-          <input
-            type="text"
-            placeholder="Search for a movie!"
-            className="input input-bordered input-info w-full max-w-xs m-5"
+          <Autocomplete
+            disableClearable={true}
+            style={{ width: "20vw", margin: "1rem" }}
+            options={movieNames}
+            // onChange={(event, value) => {
+            //   if (value) {
+            //     localStorage.setItem("mId", mIDs[movieDetails.indexOf(value)]);
+            //     window.location.href = "/streaming";
+            //   } else {
+            //     setMovieStatus(false);
+            //   }
+            // }}
+            onInputChange={(event, newInputValue) => {
+              setMovieName(newInputValue);
+              debouncedSearchMovie();
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Search for a movie!"
+                variant="outlined"
+              />
+            )}
           />
         </div>
       </div>
