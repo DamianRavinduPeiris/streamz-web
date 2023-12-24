@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
+import Autocomplete from "@mui/material/Autocomplete";
+import { debounce } from "lodash";
+import { useState,useEffect } from "react";
+import useTMDB from "../customHooks/useTMDB";
+
+
 const NavBar = () => {
+  const[movieName,setMovieName]=useState<string>('');
   return (
     <div>
       <div className="navbar ">
@@ -53,7 +60,7 @@ const NavBar = () => {
         </div>
         <div className="navbar-center">
           <img
-            className="h-10 w-10 mr-5"
+            className="h-12 w-12 mr-5"
             src="https://www.svgrepo.com/show/156861/play-button.svg"
             alt=""
           ></img>
@@ -70,14 +77,6 @@ const NavBar = () => {
             placeholder="Search for a movie!"
             className="input input-bordered input-info w-full max-w-xs m-5"
           />
-          {/* <Link to={"/"}>
-              <img
-                className="h-10 w-10 mr-5"
-                src="https://www.svgrepo.com/show/156861/play-button.svg"
-                alt=""
-              ></img>
-            
-          </Link> */}
         </div>
       </div>
     </div>

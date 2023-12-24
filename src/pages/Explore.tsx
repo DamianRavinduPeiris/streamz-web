@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import useTMDB from "../CustomHooks/useTMDB";
+import useTMDB from "../customHooks/useTMDB";
 import { Skeleton } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
-import Alert from "../Aelrts/Alert";
+import Alert from "../alerts/Alert";
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 
