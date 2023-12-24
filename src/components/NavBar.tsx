@@ -52,6 +52,11 @@ const NavBar = () => {
           </div>
         </div>
         <div className="navbar-center">
+          <img
+            className="h-10 w-10 mr-5"
+            src="https://www.svgrepo.com/show/156861/play-button.svg"
+            alt=""
+          ></img>
           <Link to={"/"}>
             <h1 className=" font-bold tracking-tight text-gray-900 sm:text-4xl">
               S T R E A M Z
@@ -60,15 +65,19 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end">
-          <Link to={"/"}>
-            <button className="btn btn-ghost btn-circle">
+          <input
+            type="text"
+            placeholder="Search for a movie!"
+            className="input input-bordered input-info w-full max-w-xs m-5"
+          />
+          {/* <Link to={"/"}>
               <img
-                className="h-50 w-50 mr-5"
+                className="h-10 w-10 mr-5"
                 src="https://www.svgrepo.com/show/156861/play-button.svg"
                 alt=""
               ></img>
-            </button>
-          </Link>
+            
+          </Link> */}
         </div>
       </div>
     </div>

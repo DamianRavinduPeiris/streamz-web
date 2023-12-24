@@ -19,6 +19,7 @@
     "axios": "^1.6.2",
     "framer-motion": "^10.16.16",
     "kutty": "^0.6.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.2.7",
     "react-dom": "^18.2.0",

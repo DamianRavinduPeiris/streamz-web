@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
     <motion.div
@@ -32,7 +34,10 @@ export default function Header() {
             animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <button className="btn btn-outline">Get Started!</button>
+            {" "}
+            <Link to="/explore">
+              <button className="btn btn-outline">Get Started!</button>
+            </Link>
           </motion.div>
         </div>
       </section>

@@ -72,8 +72,8 @@ export default function Stream() {
                   fontFamily: "Tilt Warp, sans-serif",
                 }}
                 variant="contained"
-                color="primary"
-                className="w-20 font-tilt rounded"
+                color="info"
+                className="w-20 font-tilt rounded bg-black"
                 startIcon={<PlayArrow />}
                 onClick={() => {
                   setPlayStatus(true);
