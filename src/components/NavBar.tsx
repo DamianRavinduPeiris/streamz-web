@@ -4,21 +4,26 @@ import { debounce } from "lodash";
 import { useState, useEffect } from "react";
 import useTMDB from "../customHooks/useTMDB";
 import { TextField } from "@mui/material";
+import Alert from "../alerts/Alert";
 
 const NavBar = () => {
   const [movieName, setMovieName] = useState<string>("");
   const [movieNames, setMovieNames] = useState<string[]>([]);
+  const [movieIds, setMovieIds] = useState<number[]>([]);
   const [searchStatus, setSearchStatus] = useState<boolean>(false);
-  const debouncedSearchMovie = debounce(searchMovie, 2000);
-  function searchMovie() {
+  const debouncedSearchMovie = debounce((newInputValue: string) => {
+    setMovieName(newInputValue);
     setSearchStatus(true);
-  }
+  }, 2000);
   const movieData = useTMDB(import.meta.env.VITE_SEARCH_URL + "" + movieName);
   useEffect(() => {
-    movieData.forEach((movieName) => {
-      setMovieNames((prevMovieNames) => [...prevMovieNames, movieName.title]);
+    movieData.forEach((movie) => {
+      setMovieNames((prevMovieNames) => [...prevMovieNames, movie.title]);
     });
-  }, [searchStatus]);
+    movieData.forEach((movie) => {
+      setMovieIds((prevMovieIds) => [...prevMovieIds, movie.id]);
+    });
+  }, [searchStatus, movieData]);
 
   return (
     <div>
@@ -89,17 +94,20 @@ const NavBar = () => {
             disableClearable={true}
             style={{ width: "20vw", margin: "1rem" }}
             options={movieNames}
-            // onChange={(event, value) => {
-            //   if (value) {
-            //     localStorage.setItem("mId", mIDs[movieDetails.indexOf(value)]);
-            //     window.location.href = "/streaming";
-            //   } else {
-            //     setMovieStatus(false);
-            //   }
-            // }}
+            onChange={(event, value) => {
+              if (value) {
+                setMovieName(value);
+                setSearchStatus(false);
+                localStorage.setItem(
+                  "movie",
+                  JSON.stringify(movieData[movieNames.indexOf(value)])
+                );
+
+                window.location.href = "/stream";
+              }
+            }}
             onInputChange={(event, newInputValue) => {
-              setMovieName(newInputValue);
-              debouncedSearchMovie();
+              debouncedSearchMovie(newInputValue);
             }}
             renderInput={(params) => (
               <TextField
