@@ -97,6 +97,7 @@ const NavBar = () => {
         <div className="navbar-end">
           {location.pathname === "/explore" ? (
             <Autocomplete
+              className="border-2 border-gray-300 rounded-lg"
               disableClearable={true}
               style={{ width: "20vw", margin: "1rem" }}
               options={movieNames}
