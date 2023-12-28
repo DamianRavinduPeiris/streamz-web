@@ -13,7 +13,6 @@ function App() {
     <>
       <BrowserRouter>
         <NavBar />
-
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="/explore" element={<Explore />} />

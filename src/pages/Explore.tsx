@@ -10,6 +10,8 @@ import Alert from "../alerts/Alert";
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 
+
+
 export default function Explore() {
   interface movieType {
     id: number;
@@ -39,6 +41,7 @@ export default function Explore() {
     <div>
       {md.length <= 0 ? <LinearProgress color="info" /> : null}
       <BreadCrumb name="Explore" movieName={null} />
+      
 
       <div className="flex flex-center justify-center align-center flex-wrap m-5">
         

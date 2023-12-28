@@ -7,6 +7,9 @@ import { TextField } from "@mui/material";
 import Alert from "../alerts/Alert";
 import Login from "../pages/Login";
 import { useLocation } from "react-router-dom";
+import Avatar from "./Avatar";
+import AutoCompleteSearchBar from "./AutoCompleteSearchBar";
+
 
 const NavBar = () => {
   const location = useLocation();
@@ -30,102 +33,55 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="navbar ">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
-              </svg>
+      <div className="navbar bg-base-100">
+        <div className="flex-none">
+          <div className="drawer">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              <label htmlFor="my-drawer" className="btn btn-square btn-ghost">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-5 h-5 stroke-current"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <Link to={"/"}>
-                  <a style={{ fontWeight: "bold" }}>Home</a>
-                </Link>
-              </li>
-              <li>
-                <Link to={"/explore"}>
-                  <a style={{ fontWeight: "bold" }}>Explore</a>
-                </Link>
-              </li>
-              <li>
-                <a style={{ fontWeight: "bold" }}>Signup</a>
-              </li>
-              <li>
-                <Link to={"/login"}>
-                  <a style={{ fontWeight: "bold" }}>Login</a>
-                </Link>
-              </li>
-              <li>
-                <a style={{ fontWeight: "bold" }}>Contact</a>
-              </li>
-            </ul>
+
+            <div className="drawer-side " style={{ zIndex: "1" }}>
+              <label
+                htmlFor="my-drawer"
+                aria-label="close sidebar"
+                className="drawer-overlay"
+              ></label>
+              <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                <span className="badge badge-accent mt-6">
+                  <h1>heheh</h1>
+                </span>
+                <li style={{ marginTop: "2rem" }}>
+                  <a>Account.</a>
+                </li>
+                <li>
+                  <a>Log Out.</a>
+                </li>
+                <li>
+                  
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="navbar-center">
-          <img
-            className="h-12 w-12 mr-5"
-            src="https://www.svgrepo.com/show/156861/play-button.svg"
-            alt=""
-          ></img>
-          <Link to={"/"}>
-            <h1 className=" font-bold tracking-tight text-gray-900 sm:text-4xl">
-              S T R E A M Z
-            </h1>
-          </Link>
+        <div className="flex-1">
+          <a className="btn btn-ghost text-xl">Streamz.</a>
         </div>
-
-        <div className="navbar-end">
-          {location.pathname === "/explore" ? (
-            <Autocomplete
-              className="border-2 border-gray-300 rounded-lg"
-              disableClearable={true}
-              style={{ width: "20vw", margin: "1rem" }}
-              options={movieNames}
-              onChange={(event, value) => {
-                if (value) {
-                  setMovieName(value);
-                  setSearchStatus(false);
-                  localStorage.setItem(
-                    "movie",
-                    JSON.stringify(movieData[movieNames.indexOf(value)])
-                  );
-
-                  window.location.href = "/stream";
-                }
-              }}
-              onInputChange={(event, newInputValue) => {
-                debouncedSearchMovie(newInputValue);
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Search for a movie!"
-                  variant="outlined"
-                />
-              )}
-            />
-          ) : null}
-        </div>
+        <div className="flex-none"></div>
       </div>
     </div>
   );
