@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import useTMDB from "../customHooks/useTMDB";
 import { TextField } from "@mui/material";
 import Alert from "../alerts/Alert";
+import Login from "../pages/Login";
 
 const NavBar = () => {
   const [movieName, setMovieName] = useState<string>("");
@@ -68,7 +69,9 @@ const NavBar = () => {
                 <a style={{ fontWeight: "bold" }}>Signup</a>
               </li>
               <li>
-                <a style={{ fontWeight: "bold" }}>Login</a>
+                <Link to={"/login"}>
+                  <a style={{ fontWeight: "bold" }}>Login</a>
+                </Link>
               </li>
               <li>
                 <a style={{ fontWeight: "bold" }}>Contact</a>

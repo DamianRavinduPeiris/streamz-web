@@ -21,7 +21,7 @@ export default function Footer() {
             </span>
           </a>
           <div className="mt-6 lg:max-w-sm">
-            <p className="text-gray-800 text-tilt">Crafted with ❤️‍🔥 by Damian.</p>
+            <p className="text-gray-800 font-tilt">Crafted with ❤️‍🔥 by Damian.</p>
           </div>
         </div>
         <div className="space-y-2 text-sm">
@@ -29,7 +29,7 @@ export default function Footer() {
             Contact.
           </p>
           <div className="flex">
-            <p className="mr-1 text-tilt">Phone:</p>
+            <p className="mr-1 font-tilt">Phone:</p>
             <a
               href="tel:850-123-5021"
               aria-label="Our phone"
@@ -40,7 +40,7 @@ export default function Footer() {
             </a>
           </div>
           <div className="flex">
-            <p className="mr-1 text-gray-800 text-tilt">Email:</p>
+            <p className="mr-1 text-gray-800 font-tilt">Email:</p>
             <a
               href="mailto:drpeiris3@gmail.com"
               aria-label="Our email."
@@ -51,7 +51,7 @@ export default function Footer() {
             </a>
           </div>
           <div className="flex">
-            <p className="mr-1 text-gray-800">Address:</p>
+            <p className="mr-1 text-gray-800 font-tilt">Address:</p>
             <a
               href="https://www.google.com/maps"
               target="_blank"

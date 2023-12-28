@@ -6,6 +6,7 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Stream from "./pages/Stream";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Header />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/stream" element={<Stream />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
