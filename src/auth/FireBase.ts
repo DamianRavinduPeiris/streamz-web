@@ -1,5 +1,6 @@
 
 import { initializeApp } from "firebase/app";
+import {getAuth,GoogleAuthProvider,signInWithPopup} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,4 +13,22 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
+export const sigInWithGoogle = ()=>{
+    signInWithPopup(auth,provider)
+    .then((res)=>{
+        localStorage.setItem('user',JSON.stringify(res.user))
+        console.log(res.user.photoURL)
+
+    }).catch((err)=>{
+        console.log('An Error occurred while authenticating : '+err)
+    })
+    
+
+
+
+
+
+}

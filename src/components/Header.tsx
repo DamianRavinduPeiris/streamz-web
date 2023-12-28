@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { sigInWithGoogle } from "../auth/FireBase";
 
 export default function Header() {
   return (
@@ -36,17 +37,20 @@ export default function Header() {
             transition={{ delay: 0.4 }}
           >
             {" "}
-            <Link to="/explore">
-              <button className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-                <img
-                  className="w-6 h-6"
-                  src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  loading="lazy"
-                  alt="google logo"
-                />
-                <span>Continue with Google.</span>
-              </button>
-            </Link>
+            
+            <button
+              className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+              onClick={sigInWithGoogle}
+            >
+              <img
+                className="w-6 h-6"
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                loading="lazy"
+                alt="google logo"
+              />
+              <span>Continue with Google.</span>
+            </button>
+            
           </motion.div>
         </div>
       </section>
