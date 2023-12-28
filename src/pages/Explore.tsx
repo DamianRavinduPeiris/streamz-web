@@ -41,6 +41,7 @@ export default function Explore() {
       <BreadCrumb name="Explore" movieName={null} />
 
       <div className="flex flex-center justify-center align-center flex-wrap m-5">
+        
         {md.length > 0
           ? movieData.map((movie, elementNumber) => {
               return (

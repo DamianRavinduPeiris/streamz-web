@@ -6,8 +6,10 @@ import useTMDB from "../customHooks/useTMDB";
 import { TextField } from "@mui/material";
 import Alert from "../alerts/Alert";
 import Login from "../pages/Login";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
+  const location = useLocation();
   const [movieName, setMovieName] = useState<string>("");
   const [movieNames, setMovieNames] = useState<string[]>([]);
   const [movieIds, setMovieIds] = useState<number[]>([]);
@@ -93,33 +95,35 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-end">
-          <Autocomplete
-            disableClearable={true}
-            style={{ width: "20vw", margin: "1rem" }}
-            options={movieNames}
-            onChange={(event, value) => {
-              if (value) {
-                setMovieName(value);
-                setSearchStatus(false);
-                localStorage.setItem(
-                  "movie",
-                  JSON.stringify(movieData[movieNames.indexOf(value)])
-                );
+          {location.pathname === "/explore" ? (
+            <Autocomplete
+              disableClearable={true}
+              style={{ width: "20vw", margin: "1rem" }}
+              options={movieNames}
+              onChange={(event, value) => {
+                if (value) {
+                  setMovieName(value);
+                  setSearchStatus(false);
+                  localStorage.setItem(
+                    "movie",
+                    JSON.stringify(movieData[movieNames.indexOf(value)])
+                  );
 
-                window.location.href = "/stream";
-              }
-            }}
-            onInputChange={(event, newInputValue) => {
-              debouncedSearchMovie(newInputValue);
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search for a movie!"
-                variant="outlined"
-              />
-            )}
-          />
+                  window.location.href = "/stream";
+                }
+              }}
+              onInputChange={(event, newInputValue) => {
+                debouncedSearchMovie(newInputValue);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search for a movie!"
+                  variant="outlined"
+                />
+              )}
+            />
+          ) : null}
         </div>
       </div>
     </div>

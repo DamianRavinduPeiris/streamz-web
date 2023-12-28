@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <motion.div
-      className="mt-10"
+      className="mt-10 relative"
       initial={{ scale: 0 }}
       animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
       transition={{ delay: 0.1 }}
     >
-      <section className="bg-gradient-to-r from-pink-500 to-orange-500 dark:from-pink-700 dark:to-orange-700 ">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12">
+      <section className="relative bg-main-image bg-cover bg-center">
+        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 relative">
           <motion.div
             className="mt-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
             initial={{ scale: 0 }}
@@ -36,7 +37,9 @@ export default function Header() {
           >
             {" "}
             <Link to="/explore">
-              <button className="btn btn-outline">Get Started!</button>
+              <button className="btn btn-outline btn-primary">
+                Get Started!
+              </button>
             </Link>
           </motion.div>
         </div>
