@@ -3,6 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import UserType from "../util/types/UserTypes";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -28,7 +29,6 @@ export const sigInWithGoogle = () => {
         historyList: [],
       };
       saveUser(user);
-
       localStorage.setItem("user", JSON.stringify(res.user));
       console.log(res.user);
     })
@@ -60,10 +60,11 @@ async function saveUser(user: UserType): Promise<void> {
   if (result) {
     toast.success("Welcome Back!", {
       icon: "🍾",
-     style : {
+      style: {
         fontFamily: "Tilt Warp, Sans-Serif",
-     }
+      },
     });
+    window.location.href = "/explore";
   } else {
     try {
       let status = await axios.post(
@@ -73,15 +74,14 @@ async function saveUser(user: UserType): Promise<void> {
       if (status.data.isSaved) {
         toast.success("Successfully registered!", {
           icon: "🎇",
-          
         });
+        window.location.href = "/explore";
       } else {
         toast.error("An error occurred while registering!", {
           icon: "😢",
-          style : {
+          style: {
             fontFamily: "Tilt Warp, Sans-Serif",
-         }
-         
+          },
         });
       }
     } catch (error) {
