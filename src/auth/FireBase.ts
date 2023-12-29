@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import UserType from "../util/types/UserTypes";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -40,11 +41,13 @@ function saveUser(user: UserType): void {
     .post("http://localhost:3000/user/saveUser", user)
     .then((res) => {
       if (res.data.isSaved) {
+        toast.success("Successfully registered!");
         return console.log("User saved successfully!");
       }
       console.log("User not saved!");
     })
     .catch((err) => {
+      toast.error("An error occurred while registering!"+err.message);
       console.log("An error occurred while saving user : " + err);
     });
 }

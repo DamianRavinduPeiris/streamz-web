@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Explore,Home } from "@mui/icons-material";
+import { Explore, Home } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
-
+import toast, { Toaster } from "react-hot-toast";
 
 const NavBar = () => {
   const [username, setUsername] = useState<string>("Welcome!");
   return (
     <div>
+      {/* Toaster. */}
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="navbar bg-base-100">
         <div className="flex-none">
           <div className="drawer">
@@ -39,34 +40,38 @@ const NavBar = () => {
 
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <div className="flex flex-col items-center justify-center">
-                <img
-                  src="https://www.svgrepo.com/show/156861/play-button.svg"
-                  alt=""
-                  className="h-20 w-20"
-                />
-                <span className="badge badge-accent mt-6">
-                  <h1 className="font-tilt text-center">{username}</h1>
-                </span>
+                  <img
+                    src="https://www.svgrepo.com/show/156861/play-button.svg"
+                    alt=""
+                    className="h-20 w-20"
+                  />
+                  <span className="badge badge-accent mt-6">
+                    <h1 className="font-tilt text-center">{username}</h1>
+                  </span>
                 </div>
                 <li className="mt-8">
                   <Link to={"/"}>
-                  <a className="font-tilt"><Home/>Home.</a>
+                    <a className="font-tilt">
+                      <Home />
+                      Home.
+                    </a>
                   </Link>
                 </li>
                 <li className="mt-5">
                   <Link to={"/explore"}>
-                  <a className="font-tilt"><Explore/> Explore.</a>
+                    <a className="font-tilt">
+                      <Explore /> Explore.
+                    </a>
                   </Link>
                 </li>
-                
               </ul>
             </div>
           </div>
         </div>
-        
+
         <div className="flex-1">
-        <Link to={"/"}>
-          <a className="btn btn-ghost text-xl font-tilt">Streamz.</a>
+          <Link to={"/"}>
+            <a className="btn btn-ghost text-xl font-tilt">Streamz.</a>
           </Link>
         </div>
         <div className="flex-none"></div>
