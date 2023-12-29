@@ -28,6 +28,7 @@ export const sigInWithGoogle = () => {
         historyList: [],
       };
       saveUser(user);
+
       localStorage.setItem("user", JSON.stringify(res.user));
       console.log(res.user);
     })
@@ -36,18 +37,55 @@ export const sigInWithGoogle = () => {
     });
 };
 
-function saveUser(user: UserType): void {
-  axios
-    .post("http://localhost:3000/user/saveUser", user)
-    .then((res) => {
-      if (res.data.isSaved) {
-        toast.success("Successfully registered!");
-        return console.log("User saved successfully!");
-      }
-      console.log("User not saved!");
-    })
-    .catch((err) => {
-      toast.error("An error occurred while registering!" + err.message);
-      console.log("An error occurred while saving user : " + err);
+async function isExists(email: string) {
+  try {
+    let result = await axios.get(
+      "http://localhost:3000/user/search?email=" + email
+    );
+    console.log("result heheh", result.data);
+
+    if (result.data.isExists) {
+      return true;
+    }
+  } catch (error) {
+    console.log("An error occurred while checking user email : " + error);
+  }
+
+  return false;
+}
+
+async function saveUser(user: UserType): Promise<void> {
+  let result = await isExists(user.email);
+  console.log("result", result);
+  if (result) {
+    toast.success("Welcome Back!", {
+      icon: "🍾",
+     style : {
+        fontFamily: "Tilt Warp, Sans-Serif",
+     }
     });
+  } else {
+    try {
+      let status = await axios.post(
+        "http://localhost:3000/user/saveUser",
+        user
+      );
+      if (status.data.isSaved) {
+        toast.success("Successfully registered!", {
+          icon: "🎇",
+          
+        });
+      } else {
+        toast.error("An error occurred while registering!", {
+          icon: "😢",
+          style : {
+            fontFamily: "Tilt Warp, Sans-Serif",
+         }
+         
+        });
+      }
+    } catch (error) {
+      console.log("An error occurred while registering : " + error);
+    }
+  }
 }
