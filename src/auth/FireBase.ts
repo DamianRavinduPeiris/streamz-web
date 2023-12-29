@@ -23,11 +23,11 @@ export const sigInWithGoogle = () => {
       const user: UserType = {
         name: res.user.displayName ?? "",
         email: res.user.email ?? "",
+        profilePic: res.user.photoURL ?? "",
         favouriteList: [],
         historyList: [],
       };
       saveUser(user);
-
       localStorage.setItem("user", JSON.stringify(res.user));
       console.log(res.user);
     })
@@ -47,7 +47,7 @@ function saveUser(user: UserType): void {
       console.log("User not saved!");
     })
     .catch((err) => {
-      toast.error("An error occurred while registering!"+err.message);
+      toast.error("An error occurred while registering!" + err.message);
       console.log("An error occurred while saving user : " + err);
     });
 }
