@@ -1,36 +1,11 @@
+import { useState } from "react";
+import { Explore,Home } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import Autocomplete from "@mui/material/Autocomplete";
-import { debounce } from "lodash";
-import { useState, useEffect } from "react";
-import useTMDB from "../customHooks/useTMDB";
-import { TextField } from "@mui/material";
-import Alert from "../alerts/Alert";
-import Login from "../pages/Login";
-import { useLocation } from "react-router-dom";
-import Avatar from "./Avatar";
-import AutoCompleteSearchBar from "./AutoCompleteSearchBar";
+
 
 
 const NavBar = () => {
-  const location = useLocation();
-  const [movieName, setMovieName] = useState<string>("");
-  const [movieNames, setMovieNames] = useState<string[]>([]);
-  const [movieIds, setMovieIds] = useState<number[]>([]);
-  const [searchStatus, setSearchStatus] = useState<boolean>(false);
-  const debouncedSearchMovie = debounce((newInputValue: string) => {
-    setMovieName(newInputValue);
-    setSearchStatus(true);
-  }, 2000);
-  const movieData = useTMDB(import.meta.env.VITE_SEARCH_URL + "" + movieName);
-  useEffect(() => {
-    movieData.forEach((movie) => {
-      setMovieNames((prevMovieNames) => [...prevMovieNames, movie.title]);
-    });
-    movieData.forEach((movie) => {
-      setMovieIds((prevMovieIds) => [...prevMovieIds, movie.id]);
-    });
-  }, [searchStatus, movieData]);
-
+  const [username, setUsername] = useState<string>("Welcome!");
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -61,25 +36,38 @@ const NavBar = () => {
                 aria-label="close sidebar"
                 className="drawer-overlay"
               ></label>
+
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                <div className="flex flex-col items-center justify-center">
+                <img
+                  src="https://www.svgrepo.com/show/156861/play-button.svg"
+                  alt=""
+                  className="h-20 w-20"
+                />
                 <span className="badge badge-accent mt-6">
-                  <h1>heheh</h1>
+                  <h1 className="font-tilt text-center">{username}</h1>
                 </span>
-                <li style={{ marginTop: "2rem" }}>
-                  <a>Account.</a>
+                </div>
+                <li className="mt-8">
+                  <Link to={"/"}>
+                  <a className="font-tilt"><Home/>Home.</a>
+                  </Link>
                 </li>
-                <li>
-                  <a>Log Out.</a>
+                <li className="mt-5">
+                  <Link to={"/explore"}>
+                  <a className="font-tilt"><Explore/> Explore.</a>
+                  </Link>
                 </li>
-                <li>
-                  
-                </li>
+                
               </ul>
             </div>
           </div>
         </div>
+        
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Streamz.</a>
+        <Link to={"/"}>
+          <a className="btn btn-ghost text-xl font-tilt">Streamz.</a>
+          </Link>
         </div>
         <div className="flex-none"></div>
       </div>
