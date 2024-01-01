@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Explore, Home } from "@mui/icons-material";
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import ProfilePic from "../components/ProfilePic";
-import UserType from "../util/types/UserTypes";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
@@ -16,7 +15,7 @@ const NavBar = () => {
     }
   }, [userFromStore]);
 
-  let location = useLocation();
+  
 
   return (
     <div>
@@ -54,7 +53,7 @@ const NavBar = () => {
 
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <div className="flex flex-col items-center justify-center">
-                  {location.pathname === "/explore" && loginStatus ? (
+                  {loginStatus ? (
                     <>
                       <ProfilePic />
                       <h1 className="font-tilt text-center badge badge-accent mt-6">
