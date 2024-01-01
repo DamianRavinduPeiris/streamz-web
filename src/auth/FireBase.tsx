@@ -3,6 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import UserType from "../util/types/UserTypes";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import {Headers} from '../headers/Headers'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -74,6 +75,7 @@ async function saveUser(user: UserType): Promise<void> {
         user
       );
       if (status.data.isSaved) {
+       localStorage.setItem("token", JSON.stringify(status.data.jwt));
         toast.success("Successfully registered!", {
           icon: "🎇",
         });
