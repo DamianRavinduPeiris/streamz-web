@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Explore, Home } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-
-import Avatar from "./Avatar";
+import ProfilePic from "../components/ProfilePic";
+import UserType from "../util/types/UserTypes";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
-  const [username, setUsername] = useState<string>("Welcome!");
-  let user = JSON.parse(localStorage.getItem("user") as string);
+  const [loginStatus, setLoginStatus] = useState(false);
+  const userFromStore = useSelector((state: any) => state.user);
+
+  useEffect(() => {
+    if (userFromStore != null) {
+      setLoginStatus(true);
+    }
+  }, [userFromStore]);
+
   let location = useLocation();
 
   return (
@@ -46,19 +54,29 @@ const NavBar = () => {
 
               <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <div className="flex flex-col items-center justify-center">
-                  {location.pathname === "/explore" ? (
-                    <Avatar />
-                  ) : (
-                    <img
-                      src="https://www.svgrepo.com/show/156861/play-button.svg"
-                      alt=""
-                      className="h-20 w-20"
-                    />
-                  )}
+                  {location.pathname === "/explore" && loginStatus ? (
+                    <>
+                      <ProfilePic />
+                      <h1 className="font-tilt text-center badge badge-accent mt-6">
+                        Welcome!
+                      </h1>
 
-                  <span className="badge badge-accent mt-6">
-                    <h1 className="font-tilt text-center">{username}</h1>
-                  </span>
+                      <h1 className="font-tilt text-center badge badge-outline mt-6">
+                        {userFromStore.name}
+                      </h1>
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        src="https://www.svgrepo.com/show/156861/play-button.svg"
+                        alt=""
+                        className="h-20 w-20"
+                      />
+                      <h1 className="font-tilt text-center badge badge-accent mt-6">
+                        Welcome!
+                      </h1>
+                    </>
+                  )}
                 </div>
                 <li className="mt-8">
                   <Link to={"/"}>

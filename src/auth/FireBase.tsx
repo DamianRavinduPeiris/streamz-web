@@ -3,7 +3,6 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import UserType from "../util/types/UserTypes";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -18,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export const sigInWithGoogle = () => {
+export const sigInWithGoogle = (dispatch, userFromStore) => {
   signInWithPopup(auth, provider)
     .then((res) => {
       const user: UserType = {
@@ -28,7 +27,10 @@ export const sigInWithGoogle = () => {
         favouriteList: [],
         historyList: [],
       };
+      dispatch({ type: "SET_USER", payload: user });
       saveUser(user);
+      console.log("userFromStore", userFromStore);
+
       localStorage.setItem("user", JSON.stringify(res.user));
       console.log(res.user);
     })
@@ -64,7 +66,7 @@ async function saveUser(user: UserType): Promise<void> {
         fontFamily: "Tilt Warp, Sans-Serif",
       },
     });
-    window.location.href = "/explore";
+    //window.location.href = "/explore";
   } else {
     try {
       let status = await axios.post(
@@ -75,7 +77,8 @@ async function saveUser(user: UserType): Promise<void> {
         toast.success("Successfully registered!", {
           icon: "🎇",
         });
-        window.location.href = "/explore";
+
+       // window.location.href = "/explore";
       } else {
         toast.error("An error occurred while registering!", {
           icon: "😢",

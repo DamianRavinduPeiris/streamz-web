@@ -1,8 +1,19 @@
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { calcLength, motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
 import { sigInWithGoogle } from "../auth/FireBase";
+import { LoginStatusContext } from "../contexts/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const userFromStore = useSelector((state: any) => state.user);
+  function handleSignIn() {
+    sigInWithGoogle(dispatch, userFromStore);
+  }
+  console.log("userFromStore-header", userFromStore);
+  const navigate = useNavigate();
+  navigate("/explore");
+
   return (
     <motion.div
       className="mt-10 relative"
@@ -39,7 +50,7 @@ export default function Header() {
             {" "}
             <button
               className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
-              onClick={sigInWithGoogle}
+              onClick={handleSignIn}
             >
               <img
                 className="w-6 h-6"
