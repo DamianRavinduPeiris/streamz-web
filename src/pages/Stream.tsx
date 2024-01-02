@@ -5,6 +5,8 @@ import BreadCrumb from "../components/BreadCrumb";
 import { PlayArrow, Explore } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import Hearticon from "../icons/Hearticon";
+import WatchLater from "../icons/WatchLaterIcon";
 
 
 export default function Stream() {
@@ -48,6 +50,7 @@ export default function Stream() {
               animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
               transition={{ delay: 0.1 }}
             />
+
             <motion.div
               className="flex flex-col justify-center m-5"
               initial={{ scale: 0 }}
@@ -81,6 +84,7 @@ export default function Stream() {
               >
                 Play.
               </Button>
+
               <div className="card-actions justify-end">
                 {genres.map((g, index) => {
                   return (
@@ -89,6 +93,10 @@ export default function Stream() {
                     </div>
                   );
                 })}
+              </div>
+              <div className="flex flex-row justify-start">
+                <Hearticon />
+                <WatchLater />
               </div>
             </motion.div>
           </>
@@ -106,16 +114,16 @@ export default function Stream() {
                 src={import.meta.env.VITE_STREAMING_URL + md.id}
                 allowFullScreen
               ></iframe>
-              <Link to={'/explore'}>
-              <Button
-                style={{ fontFamily: "Tilt Warp, sans-serif" }}
-                variant="contained"
-                color="success"
-                className="w-60 font-tilt rounded"
-                startIcon={<Explore />}
-              >
-                Back to Explore.
-              </Button>
+              <Link to={"/explore"}>
+                <Button
+                  style={{ fontFamily: "Tilt Warp, sans-serif" }}
+                  variant="contained"
+                  color="success"
+                  className="w-60 font-tilt rounded"
+                  startIcon={<Explore />}
+                >
+                  Back to Explore.
+                </Button>
               </Link>
             </motion.div>
           </>

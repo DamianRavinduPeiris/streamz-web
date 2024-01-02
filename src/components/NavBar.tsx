@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Explore, Home } from "@mui/icons-material";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import ProfilePic from "../components/ProfilePic";
 import { useSelector } from "react-redux";
@@ -14,8 +14,6 @@ const NavBar = () => {
       setLoginStatus(true);
     }
   }, [userFromStore]);
-
-  
 
   return (
     <div>
