@@ -12,10 +12,10 @@ import UserType from "../util/types/UserTypes";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { auth } from "../headers/Headers";
+import fetchUser from "../util/commonfunctions/FetchUser";
 
 export default function Stream() {
   const userFromStore = useSelector((state: any) => state.user);
-  
 
   const [md, setMD] = useState({
     id: 0,
@@ -105,25 +105,19 @@ export default function Stream() {
               <div className="flex flex-row justify-start">
                 <div
                   onClick={async () => {
-                    let userData = await axios.get(
-                      "http://localhost:3000/user/search?email=" +
-                        userFromStore.email
-                    );
-                    console.log(userData.data, userFromStore.email);
-                    let favouriteList = userData.data.data[0].favouriteList;
+                    let user = await fetchUser(userFromStore.email);
+                    console.log('received user', user)
+                    let favouriteList = user.favouriteList;
                     let array: number[] = [];
                     if (favouriteList.includes(md.id)) {
-                      array = userData.data.data[0].favouriteList.filter(
-                        (id: number) => {
-                          return id !== md.id;
-                        }
-                      );
+                      array = user.favouriteList.filter((id: number) => {
+                        return id !== md.id;
+                      });
                       console.log("array", array);
-                      userData.data.data[0].favouriteList = array;
-                      console.log("updated user", userData.data.data[0]);
+                      user.favouriteList = array;
                       let res = await axios.put(
                         "http://localhost:3000/user/update",
-                        userData.data.data[0],
+                        user,
                         { headers: auth }
                       );
 
@@ -148,10 +142,10 @@ export default function Stream() {
                       }
                     } else {
                       console.log("else");
-                      userData.data.data[0].favouriteList.push(md.id);
+                      user.favouriteList.push(md.id);
                       let res = await axios.put(
                         "http://localhost:3000/user/update",
-                        userData.data.data[0],
+                        user,
                         { headers: auth }
                       );
                       if (res.data.isUpdated) {
@@ -178,7 +172,9 @@ export default function Stream() {
                 >
                   <Hearticon />
                 </div>
-                <WatchLater />
+                <div onClick={() => {}}>
+                  <WatchLater />
+                </div>
               </div>
             </motion.div>
           </>
