@@ -7,12 +7,11 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Hearticon from "../icons/Hearticon";
 import WatchLater from "../icons/WatchLaterIcon";
-import { useDispatch, useSelector } from "react-redux";
-import UserType from "../util/types/UserTypes";
+import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { auth } from "../headers/Headers";
-import fetchUser from "../util/commonfunctions/FetchUser";
+import { fetchUser, updateUser } from "../util/commonfunctions/UserManager";
 
 export default function Stream() {
   const userFromStore = useSelector((state: any) => state.user);
@@ -106,7 +105,7 @@ export default function Stream() {
                 <div
                   onClick={async () => {
                     let user = await fetchUser(userFromStore.email);
-                    console.log('received user', user)
+                    console.log("received user", user);
                     let favouriteList = user.favouriteList;
                     let array: number[] = [];
                     if (favouriteList.includes(md.id)) {
@@ -115,12 +114,7 @@ export default function Stream() {
                       });
                       console.log("array", array);
                       user.favouriteList = array;
-                      let res = await axios.put(
-                        "http://localhost:3000/user/update",
-                        user,
-                        { headers: auth }
-                      );
-
+                      let res = await updateUser(user);
                       if (res.data.isUpdated) {
                         toast.success("Favorites Updated!", {
                           icon: "💖",
@@ -143,11 +137,7 @@ export default function Stream() {
                     } else {
                       console.log("else");
                       user.favouriteList.push(md.id);
-                      let res = await axios.put(
-                        "http://localhost:3000/user/update",
-                        user,
-                        { headers: auth }
-                      );
+                      let res = await updateUser(user);
                       if (res.data.isUpdated) {
                         toast.success("Favorites Updated!", {
                           icon: "💖",
