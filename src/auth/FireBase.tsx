@@ -27,6 +27,7 @@ export const sigInWithGoogle = (dispatch, userFromStore) => {
         profilePic: res.user.photoURL ?? "",
         favouriteList: [],
         historyList: [],
+        watchLaterList: [],
       };
       dispatch({ type: "SET_USER", payload: user });
       saveUser(user);

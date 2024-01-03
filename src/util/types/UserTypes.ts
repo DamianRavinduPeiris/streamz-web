@@ -4,4 +4,5 @@ export default interface UserType {
   profilePic: string;
   favouriteList: number[];
   historyList: number[];
+  watchLaterList: number[];
 }

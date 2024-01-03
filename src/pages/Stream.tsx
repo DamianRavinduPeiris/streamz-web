@@ -15,8 +15,6 @@ import { fetchUser, updateUser } from "../util/commonfunctions/UserManager";
 import showAlert from "../alerts/ShowAlert";
 import alertTypes from "../util/types/AlertTypes";
 
-
-
 export default function Stream() {
   const userFromStore = useSelector((state: any) => state.user);
 
@@ -119,28 +117,96 @@ export default function Stream() {
                       console.log("array", array);
                       user.favouriteList = array;
                       let res = await updateUser(user);
-                      console.log("res", res)
+                      console.log("res", res);
                       if (res.isUpdated) {
-                       showAlert(alertTypes.SUCCESS, "Favorites Updated!", "💖");
+                        showAlert(
+                          alertTypes.SUCCESS,
+                          "Favorites Updated!",
+                          "💖"
+                        );
                       } else {
-                        showAlert(alertTypes.ERROR, "An error occurred while updating favourites!" + res.data.msg, "💔");
+                        showAlert(
+                          alertTypes.ERROR,
+                          "An error occurred while updating favourites!" +
+                            res.data.msg,
+                          "💔"
+                        );
                       }
                     } else {
                       console.log("else");
                       user.favouriteList.push(md.id);
                       let res = await updateUser(user);
-                      console.log("res", res)
+                      console.log("res", res);
                       if (res.isUpdated) {
-                        showAlert(alertTypes.SUCCESS, "Favorites Updated!", "💖");
+                        showAlert(
+                          alertTypes.SUCCESS,
+                          "Favorites Updated!",
+                          "💖"
+                        );
                       } else {
-                        showAlert(alertTypes.ERROR, "An error occurred while updating favourites!" + res.data.msg, "💔");
+                        showAlert(
+                          alertTypes.ERROR,
+                          "An error occurred while updating favourites!" +
+                            res.data.msg,
+                          "💔"
+                        );
                       }
                     }
                   }}
                 >
                   <Hearticon />
                 </div>
-                <div onClick={() => {}}>
+                <div
+                  onClick={async () => {
+                    let user = await fetchUser(userFromStore.email);
+                    console.log("received user", user);
+                    let watchList = user.watchLaterList;
+                    let array: number[] = [];
+                    if (watchList.includes(md.id)) {
+                      array = user.watchLaterList.filter((id: number) => {
+                        return id !== md.id;
+                      });
+                      console.log("array", array);
+                      user.watchLaterList = array;
+                      let res = await updateUser(user);
+                      console.log("res", res);
+                      if (res.isUpdated) {
+                        showAlert(
+                          alertTypes.SUCCESS,
+                          "Watch Later list Updated!",
+                          "💖"
+                        );
+                      } else {
+                        showAlert(
+                          alertTypes.ERROR,
+                          "An error occurred while updating watch list!" +
+                            res.data.msg,
+                          "💔"
+                        );
+                      }
+                    } else {
+                      console.log("else");
+                      user.watchLaterList.push(md.id);
+                      console.log('updated wl',user)
+                      let res = await updateUser(user);
+                      console.log("res", res);
+                      if (res.isUpdated) {
+                        showAlert(
+                          alertTypes.SUCCESS,
+                          "Watch Later list Updated!",
+                          "💖"
+                        );
+                      } else {
+                        showAlert(
+                          alertTypes.ERROR,
+                          "An error occurred while updating watch list!" +
+                            res.data.msg,
+                          "💔"
+                        );
+                      }
+                    }
+                  }}
+                >
                   <WatchLater />
                 </div>
               </div>
