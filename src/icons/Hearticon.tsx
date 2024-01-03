@@ -1,4 +1,3 @@
-
 import { CiHeart } from "react-icons/ci";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
@@ -13,16 +12,7 @@ export default function Hearticon() {
         style={{ fontSize: "1.5rem" }}
       >
         <div className="tooltip m-2 " data-tip="Add to Favourites!">
-          <CiHeart
-            onClick={() => {
-              toast.success("Added to Favourites!", {
-                icon: "💖",
-                style: {
-                  fontFamily: "Tilt Warp, Sans-Serif",
-                },
-              });
-            }}
-          />
+          <CiHeart />
         </div>
       </motion.div>
     </div>

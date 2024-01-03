@@ -4,6 +4,7 @@ import { sigInWithGoogle } from "../auth/FireBase";
 import { LoginStatusContext } from "../contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Header() {
   const dispatch = useDispatch();
   const userFromStore = useSelector((state: any) => state.user);

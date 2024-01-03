@@ -7,9 +7,16 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Hearticon from "../icons/Hearticon";
 import WatchLater from "../icons/WatchLaterIcon";
-
+import { useDispatch, useSelector } from "react-redux";
+import UserType from "../util/types/UserTypes";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { auth } from "../headers/Headers";
 
 export default function Stream() {
+  const userFromStore = useSelector((state: any) => state.user);
+  
+
   const [md, setMD] = useState({
     id: 0,
     title: "",
@@ -21,6 +28,7 @@ export default function Stream() {
   });
   const [genres, setGenres] = useState<string[]>([]);
   const [isPlayed, setPlayStatus] = useState<boolean>(false);
+
   useEffect(() => {
     let movie = JSON.parse(localStorage.getItem("movie") as string);
     setMD(movie);
@@ -95,7 +103,81 @@ export default function Stream() {
                 })}
               </div>
               <div className="flex flex-row justify-start">
-                <Hearticon />
+                <div
+                  onClick={async () => {
+                    let userData = await axios.get(
+                      "http://localhost:3000/user/search?email=" +
+                        userFromStore.email
+                    );
+                    console.log(userData.data, userFromStore.email);
+                    let favouriteList = userData.data.data[0].favouriteList;
+                    let array: number[] = [];
+                    if (favouriteList.includes(md.id)) {
+                      array = userData.data.data[0].favouriteList.filter(
+                        (id: number) => {
+                          return id !== md.id;
+                        }
+                      );
+                      console.log("array", array);
+                      userData.data.data[0].favouriteList = array;
+                      console.log("updated user", userData.data.data[0]);
+                      let res = await axios.put(
+                        "http://localhost:3000/user/update",
+                        userData.data.data[0],
+                        { headers: auth }
+                      );
+
+                      if (res.data.isUpdated) {
+                        toast.success("Favorites Updated!", {
+                          icon: "💖",
+                          style: {
+                            fontFamily: "Tilt Warp, Sans-Serif",
+                          },
+                        });
+                      } else {
+                        toast.error(
+                          "An error occurred while updating favourites!" +
+                            res.data.msg,
+                          {
+                            icon: "💔",
+                            style: {
+                              fontFamily: "Tilt Warp, Sans-Serif",
+                            },
+                          }
+                        );
+                      }
+                    } else {
+                      console.log("else");
+                      userData.data.data[0].favouriteList.push(md.id);
+                      let res = await axios.put(
+                        "http://localhost:3000/user/update",
+                        userData.data.data[0],
+                        { headers: auth }
+                      );
+                      if (res.data.isUpdated) {
+                        toast.success("Favorites Updated!", {
+                          icon: "💖",
+                          style: {
+                            fontFamily: "Tilt Warp, Sans-Serif",
+                          },
+                        });
+                      } else {
+                        toast.error(
+                          "An error occurred while updating favourites!" +
+                            res.data.msg,
+                          {
+                            icon: "💔",
+                            style: {
+                              fontFamily: "Tilt Warp, Sans-Serif",
+                            },
+                          }
+                        );
+                      }
+                    }
+                  }}
+                >
+                  <Hearticon />
+                </div>
                 <WatchLater />
               </div>
             </motion.div>
