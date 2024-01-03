@@ -12,6 +12,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { auth } from "../headers/Headers";
 import { fetchUser, updateUser } from "../util/commonfunctions/UserManager";
+import showAlert from "../alerts/ShowAlert";
+import alertTypes from "../util/types/AlertTypes";
+
+
 
 export default function Stream() {
   const userFromStore = useSelector((state: any) => state.user);
@@ -115,47 +119,21 @@ export default function Stream() {
                       console.log("array", array);
                       user.favouriteList = array;
                       let res = await updateUser(user);
-                      if (res.data.isUpdated) {
-                        toast.success("Favorites Updated!", {
-                          icon: "💖",
-                          style: {
-                            fontFamily: "Tilt Warp, Sans-Serif",
-                          },
-                        });
+                      console.log("res", res)
+                      if (res.isUpdated) {
+                       showAlert(alertTypes.SUCCESS, "Favorites Updated!", "💖");
                       } else {
-                        toast.error(
-                          "An error occurred while updating favourites!" +
-                            res.data.msg,
-                          {
-                            icon: "💔",
-                            style: {
-                              fontFamily: "Tilt Warp, Sans-Serif",
-                            },
-                          }
-                        );
+                        showAlert(alertTypes.ERROR, "An error occurred while updating favourites!" + res.data.msg, "💔");
                       }
                     } else {
                       console.log("else");
                       user.favouriteList.push(md.id);
                       let res = await updateUser(user);
-                      if (res.data.isUpdated) {
-                        toast.success("Favorites Updated!", {
-                          icon: "💖",
-                          style: {
-                            fontFamily: "Tilt Warp, Sans-Serif",
-                          },
-                        });
+                      console.log("res", res)
+                      if (res.isUpdated) {
+                        showAlert(alertTypes.SUCCESS, "Favorites Updated!", "💖");
                       } else {
-                        toast.error(
-                          "An error occurred while updating favourites!" +
-                            res.data.msg,
-                          {
-                            icon: "💔",
-                            style: {
-                              fontFamily: "Tilt Warp, Sans-Serif",
-                            },
-                          }
-                        );
+                        showAlert(alertTypes.ERROR, "An error occurred while updating favourites!" + res.data.msg, "💔");
                       }
                     }
                   }}

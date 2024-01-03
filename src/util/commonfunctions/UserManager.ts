@@ -25,4 +25,4 @@ export async function updateUser(user: UserType) {
     console.log("An Error occurred while updating the user :", error);
   }
 }
-module.exports = { fetchUser, updateUser };
+
