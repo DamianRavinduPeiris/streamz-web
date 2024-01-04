@@ -30,11 +30,11 @@ export default function WatchLater() {
   
   async function fetchMovies() {
     if (user) {
-      const promises = user.watchLaterList.map((mID: number) => 
+      const promises :Promise<any> [] = user.watchLaterList.map((mID: number) => 
         axios.get(import.meta.env.VITE_SEARCH_BY_ID_URL + mID, options)
       );
       const results = await Promise.all(promises);
-      const movieData = results.map(res => res.data);
+      const movieData = results.map((result)=>)
       setMD(movieData);
     }
   }
