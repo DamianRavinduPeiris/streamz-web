@@ -8,9 +8,10 @@ import NotFound from "./pages/NotFound";
 import Stream from "./pages/Stream";
 import Login from "./pages/Login";
 import { useEffect } from "react";
+import Favorites from "./pages/Favorites";
+import WatchLater from "./pages/WatchLater";
 
 function App() {
-  
   return (
     <>
       <BrowserRouter>
@@ -20,6 +21,8 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/stream" element={<Stream />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/watchlater" element={<WatchLater />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

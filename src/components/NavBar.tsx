@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Explore, Home } from "@mui/icons-material";
+import { Explore, Home,WatchLater,Favorite } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import ProfilePic from "../components/ProfilePic";
@@ -78,15 +78,29 @@ const NavBar = () => {
                 <li className="mt-8">
                   <Link to={"/"}>
                     <a className="font-tilt">
-                      <Home />
-                      Home.
+                      <Home  />  Home.
+                      
                     </a>
                   </Link>
                 </li>
                 <li className="mt-5">
                   <Link to={"/explore"}>
                     <a className="font-tilt">
-                      <Explore /> Explore.
+                      <Explore />  Explore.
+                    </a>
+                  </Link>
+                </li>
+                <li className="mt-5">
+                  <Link to={"/favorites"}>
+                    <a className="font-tilt">
+                      <Favorite  />  Favourites.
+                    </a>
+                  </Link>
+                </li>
+                <li className="mt-5">
+                  <Link to={"/watchlater"}>
+                    <a className="font-tilt">
+                      <WatchLater  />  Watch Later.
                     </a>
                   </Link>
                 </li>
