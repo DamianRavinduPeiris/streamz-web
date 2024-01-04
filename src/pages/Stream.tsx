@@ -31,14 +31,17 @@ export default function Stream() {
     let movie = JSON.parse(localStorage.getItem("movie") as string);
     setMD(movie);
     const genreArray: string[] = [];
-    movie.genre_ids.map((id: number) => {
-      Genres.genres.map((genre) => {
-        if (genre.id === id) {
-          genreArray.push(genre.name);
-        }
+    if (movie.genre_ids) {
+      movie.genre_ids.map((id: number) => {
+        Genres.genres.map((genre) => {
+          if (genre.id === id) {
+            genreArray.push(genre.name);
+          }
+        });
       });
-    });
-    setGenres(genreArray);
+      setGenres(genreArray);
+    }
+    
   }, []);
 
   return (
@@ -92,13 +95,13 @@ export default function Stream() {
               </Button>
 
               <div className="card-actions justify-end">
-                {genres.map((g, index) => {
+                {genres? genres.map((g, index) => {
                   return (
                     <div className="badge badge-ghist m-2" key={index}>
                       {g}
                     </div>
                   );
-                })}
+                }): null}
               </div>
               <div className="flex flex-row justify-start">
                 <div
@@ -184,7 +187,7 @@ export default function Stream() {
                     } else {
                       console.log("else");
                       user.watchLaterList.push(md.id);
-                      console.log('updated wl',user)
+                      console.log("updated wl", user);
                       let res = await updateUser(user);
                       console.log("res", res);
                       if (res.isUpdated) {
