@@ -20,7 +20,7 @@ export default function Favorites() {
           animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Favorites.
+          Favourites.
         </motion.div>
       ) : (
         <NotLoggedIn />

@@ -91,7 +91,7 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li className="mt-5">
-                  <Link to={"/favorites"}>
+                  <Link to={"/favourites"}>
                     <a className="font-tilt">
                       <Favorite  />  Favourites.
                     </a>

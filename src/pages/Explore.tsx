@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useTMDB from "../customHooks/useTMDB";
 import { Skeleton } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -6,6 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
+import movieType from "../util/types/MovieTypes";
 
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
@@ -13,16 +14,6 @@ import NotLoggedIn from "./NotLoggedIn";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Explore() {
-  interface movieType {
-    id: number;
-    title: string;
-    poster_path: string;
-    overview: string;
-    release_date: string;
-    vote_average: number;
-    genre_ids: number[];
-  }
-
   const [md, setMD] = useState<movieType[]>([]);
   const [page, setPageNumber] = useState<number>(1);
   const [refetch, setRefetchStatus] = useState(false);
@@ -34,11 +25,9 @@ export default function Explore() {
   console.log("rendering");
   console.log("useEffect", userFromStore);
   useEffect(() => {
-    
     if (userFromStore != null) {
       setLoginStatus(true);
     } else {
-      
       setTimeout(() => {
         console.log("userFromStore (after delay)", userFromStore);
       }, 5000); // You can adjust the delay as needed
@@ -49,7 +38,6 @@ export default function Explore() {
 
     console.log("movieData", movieData);
   }, [movieData, page]);
-  
 
   return (
     <div>
@@ -96,8 +84,6 @@ export default function Explore() {
                         >
                           ⭐{movie.vote_average}
                         </h1>
-                        
-                       
                       </div>
                     </JackInTheBox>
                   );

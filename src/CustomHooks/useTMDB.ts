@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { options } from "../util/options/Options";
 
 interface movieType {
   id: number;
@@ -7,24 +8,16 @@ interface movieType {
   poster_path: string;
   overview: string;
   release_date: string;
-  vote_average : number,
-  genre_ids : number[]
- 
+  vote_average: number;
+  genre_ids: number[];
 }
 
 export default function useTMDB(url: string): movieType[] {
   const [movieData, setMovieData] = useState(<movieType[]>[]);
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: "Bearer " + import.meta.env.VITE_TMDB_AUTH_TOKEN,
-    },
-  };
   async function fetchData() {
     let movieArray: movieType[] = [];
     let res = await axios.get(url, options);
-    console.log(res)
+    console.log(res);
     res.data.results.map((movie: movieType) => {
       let movieDataObject: movieType = {
         id: movie.id,
@@ -33,8 +26,7 @@ export default function useTMDB(url: string): movieType[] {
         overview: movie.overview,
         release_date: movie.release_date,
         vote_average: movie.vote_average,
-        genre_ids: movie.genre_ids
-        
+        genre_ids: movie.genre_ids,
       };
 
       movieArray.push(movieDataObject);
