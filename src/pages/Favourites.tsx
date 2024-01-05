@@ -9,6 +9,8 @@ import { options } from "../util/options/Options";
 import movieType from "../util/types/MovieTypes";
 import { JackInTheBox } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
+import Empty from "./Empty";
+
 
 export default function Favorites() {
   const userFromStore = useSelector((state: any) => state.user);
@@ -67,7 +69,9 @@ export default function Favorites() {
           >
             Favourites.
           </motion.div>
-          <div className="flex flex-center justify-center align-center flex-wrap m-5">
+          {
+            md.length===0? <Empty topic="Aww!" msg="You don't have any favourites yet."/>:
+            <div className="flex flex-center justify-center align-center flex-wrap m-5">
             {md.map((movie, elementNumber) => {
               return (
                 <JackInTheBox>
@@ -103,6 +107,8 @@ export default function Favorites() {
               );
             })}
           </div>
+          }
+          
         </>
       ) : (
         <NotLoggedIn />

@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import Favorites from "./pages/Favourites";
 import WatchLater from "./pages/WatchLater";
 
+
+
 function App() {
   return (
     <>
@@ -23,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/favourites" element={<Favorites />} />
           <Route path="/watchlater" element={<WatchLater />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

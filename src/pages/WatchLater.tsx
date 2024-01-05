@@ -9,6 +9,7 @@ import axios from "axios";
 import { options } from "../util/options/Options";
 import { JackInTheBox } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
+import Empty from "./Empty";
 
 export default function WatchLater() {
   const userFromStore = useSelector((state: any) => state.user);
@@ -23,21 +24,24 @@ export default function WatchLater() {
 
   async function fetchMovies() {
     if (user) {
-      let movieData:Promise<any>[] = user.watchLaterList.map(async (mID)=>{
-         try {
-          return  axios.get(import.meta.env.VITE_SEARCH_BY_ID_URL + mID, options)
-        } catch (error:any) {
-          console.log("An error occurred while fetching favourites :", error.message);
+      let movieData: Promise<any>[] = user.watchLaterList.map(async (mID) => {
+        try {
+          return axios.get(
+            import.meta.env.VITE_SEARCH_BY_ID_URL + mID,
+            options
+          );
+        } catch (error: any) {
+          console.log(
+            "An error occurred while fetching favourites :",
+            error.message
+          );
         }
-      })
+      });
       let resolvedData = await Promise.all(movieData);
-      let finalData = resolvedData.map((movie)=>{
+      let finalData = resolvedData.map((movie) => {
         return movie.data;
-
-      })
-      setMD(finalData)
-      
-      ;
+      });
+      setMD(finalData);
     }
   }
 
@@ -64,42 +68,49 @@ export default function WatchLater() {
           >
             Watch Later.
           </motion.div>
-          <div className="flex flex-center justify-center align-center flex-wrap m-5">
-            {md.map((movie, elementNumber) => {
-              return (
-                <JackInTheBox>
-                  <div className="flex flex-col justify-center items-center">
-                    <motion.img
-                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                      alt={movie.title}
-                      className="m-10 rounded-lg shadow-2xl "
-                      style={{ width: "200px", height: "300px" }}
-                      key={elementNumber}
-                      initial={{ scale: 0 }}
-                      animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.1 }}
-                      whileHover={{ scale: 1.2 }}
-                      onClick={(e) => {
-                        localStorage.setItem("movie", JSON.stringify(movie));
-                        console.log(movie.id);
-                        navigate("/stream");
-                      }}
-                    />
+          {md.length === 0 ? (
+            <Empty
+              topic="Oh Snap!"
+              msg="You haven't added any movies to your watch later list yet."
+            ></Empty>
+          ) : (
+            <div className="flex flex-center justify-center align-center flex-wrap m-5">
+              {md.map((movie, elementNumber) => {
+                return (
+                  <JackInTheBox>
+                    <div className="flex flex-col justify-center items-center">
+                      <motion.img
+                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                        alt={movie.title}
+                        className="m-10 rounded-lg shadow-2xl "
+                        style={{ width: "200px", height: "300px" }}
+                        key={elementNumber}
+                        initial={{ scale: 0 }}
+                        animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
+                        transition={{ delay: 0.1 }}
+                        whileHover={{ scale: 1.2 }}
+                        onClick={(e) => {
+                          localStorage.setItem("movie", JSON.stringify(movie));
+                          console.log(movie.id);
+                          navigate("/stream");
+                        }}
+                      />
 
-                    <h1 className="font-tilt" style={{ fontSize: "0.8rem" }}>
-                      {movie.title}
-                    </h1>
-                    <h1
-                      className="font-tilt mt-2"
-                      style={{ fontSize: "0.8rem" }}
-                    >
-                      ⭐{movie.vote_average}
-                    </h1>
-                  </div>
-                </JackInTheBox>
-              );
-            })}
-          </div>
+                      <h1 className="font-tilt" style={{ fontSize: "0.8rem" }}>
+                        {movie.title}
+                      </h1>
+                      <h1
+                        className="font-tilt mt-2"
+                        style={{ fontSize: "0.8rem" }}
+                      >
+                        ⭐{movie.vote_average}
+                      </h1>
+                    </div>
+                  </JackInTheBox>
+                );
+              })}
+            </div>
+          )}
         </>
       ) : (
         <NotLoggedIn />
