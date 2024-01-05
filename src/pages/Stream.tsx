@@ -135,6 +135,7 @@ export default function Stream() {
                     } else {
                       console.log("else");
                       user.favouriteList.push(md.id);
+                      console.log("updated fl", user)
                       let res = await updateUser(user);
                       console.log("res", res);
                       if (res.isUpdated) {

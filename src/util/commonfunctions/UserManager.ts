@@ -16,10 +16,10 @@ export async function fetchUser(email: string) {
   return null;
 }
 export async function updateUser(user: UserType) {
+  console.log("token ", auth);
   try {
-    let res = await axios.put("http://localhost:3000/user/update", user, {
-      headers: auth,
-    });
+    let res = await axios.put("http://localhost:3000/user/update", user, {headers: auth,});
+    
     return res.data;
   } catch (error) {
     console.log("An Error occurred while updating the user :", error);
