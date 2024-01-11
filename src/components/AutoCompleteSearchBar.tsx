@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Autocomplete from "@mui/material/Autocomplete";
 import { debounce } from "lodash";
 import { useState, useEffect } from "react";
-import useTMDB from "../customHooks/useTMDB";
+import useTMDB from "../customHooks/useTMDBMovies";
 import { TextField } from "@mui/material";
 import Alert from "../alerts/Alert";
 import Login from "../pages/Login";

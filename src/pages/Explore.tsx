@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useTMDB from "../customHooks/useTMDB";
+import useTMDBMovies from "../customHooks/useTMDBMovies";
 import { Skeleton } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import Pagination from "@mui/material/Pagination";
@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
 import movieType from "../util/types/MovieTypes";
+
 
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
@@ -19,8 +20,8 @@ export default function Explore() {
   const [refetch, setRefetchStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState<boolean>(false);
   const userFromStore = useSelector((state: any) => state.user);
-  let movieData: movieType[] = useTMDB(
-    import.meta.env.VITE_POPULAR_TV_SHOWS_URL + page
+  let movieData: movieType[] = useTMDBMovies(
+    import.meta.env.VITE_POPULAR_MOVIES_URL + page
   );
   console.log("rendering");
   console.log("useEffect", userFromStore);
