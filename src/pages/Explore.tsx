@@ -11,7 +11,7 @@ import movieType from "../util/types/MovieTypes";
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import NotLoggedIn from "./NotLoggedIn";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Explore() {
   const [md, setMD] = useState<movieType[]>([]);
@@ -20,17 +20,13 @@ export default function Explore() {
   const [loginStatus, setLoginStatus] = useState<boolean>(false);
   const userFromStore = useSelector((state: any) => state.user);
   let movieData: movieType[] = useTMDB(
-    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=" + page
+    import.meta.env.VITE_POPULAR_TV_SHOWS_URL + page
   );
   console.log("rendering");
   console.log("useEffect", userFromStore);
   useEffect(() => {
     if (userFromStore != null) {
       setLoginStatus(true);
-    } else {
-      setTimeout(() => {
-        console.log("userFromStore (after delay)", userFromStore);
-      }, 5000); // You can adjust the delay as needed
     }
 
     setMD(movieData);
@@ -44,7 +40,7 @@ export default function Explore() {
       {loginStatus ? (
         <>
           {md.length <= 0 ? <LinearProgress color="info" /> : null}
-          <BreadCrumb name="Explore" movieName={null} />
+          <BreadCrumb name="Movies." movieName={null} />
 
           <div className="flex flex-center justify-center align-center flex-wrap m-5">
             {md.length > 0

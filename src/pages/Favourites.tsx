@@ -11,7 +11,6 @@ import { JackInTheBox } from "react-awesome-reveal";
 import { useNavigate } from "react-router-dom";
 import Empty from "./Empty";
 
-
 export default function Favorites() {
   const userFromStore = useSelector((state: any) => state.user);
   const [loginStatus, setLoginStatus] = useState<boolean>(false);
@@ -69,46 +68,46 @@ export default function Favorites() {
           >
             Favourites.
           </motion.div>
-          {
-            md.length===0? <Empty topic="Aww!" msg="You don't have any favourites yet."/>:
+          {md.length === 0 ? (
+            <Empty topic="Aww!" msg="You don't have any favourites yet." />
+          ) : (
             <div className="flex flex-center justify-center align-center flex-wrap m-5">
-            {md.map((movie, elementNumber) => {
-              return (
-                <JackInTheBox>
-                  <div className="flex flex-col justify-center items-center">
-                    <motion.img
-                      src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                      alt={movie.title}
-                      className="m-10 rounded-lg shadow-2xl "
-                      style={{ width: "200px", height: "300px" }}
-                      key={elementNumber}
-                      initial={{ scale: 0 }}
-                      animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.1 }}
-                      whileHover={{ scale: 1.2 }}
-                      onClick={(e) => {
-                        localStorage.setItem("movie", JSON.stringify(movie));
-                        console.log(movie.id);
-                        navigate("/stream");
-                      }}
-                    />
+              {md.map((movie, elementNumber) => {
+                return (
+                  <JackInTheBox>
+                    <div className="flex flex-col justify-center items-center">
+                      <motion.img
+                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                        alt={movie.title}
+                        className="m-10 rounded-lg shadow-2xl "
+                        style={{ width: "200px", height: "300px" }}
+                        key={elementNumber}
+                        initial={{ scale: 0 }}
+                        animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
+                        transition={{ delay: 0.1 }}
+                        whileHover={{ scale: 1.2 }}
+                        onClick={(e) => {
+                          localStorage.setItem("movie", JSON.stringify(movie));
+                          console.log(movie.id);
+                          navigate("/stream");
+                        }}
+                      />
 
-                    <h1 className="font-tilt" style={{ fontSize: "0.8rem" }}>
-                      {movie.title}
-                    </h1>
-                    <h1
-                      className="font-tilt mt-2"
-                      style={{ fontSize: "0.8rem" }}
-                    >
-                      ⭐{movie.vote_average}
-                    </h1>
-                  </div>
-                </JackInTheBox>
-              );
-            })}
-          </div>
-          }
-          
+                      <h1 className="font-tilt" style={{ fontSize: "0.8rem" }}>
+                        {movie.title}
+                      </h1>
+                      <h1
+                        className="font-tilt mt-2"
+                        style={{ fontSize: "0.8rem" }}
+                      >
+                        ⭐{movie.vote_average}
+                      </h1>
+                    </div>
+                  </JackInTheBox>
+                );
+              })}
+            </div>
+          )}
         </>
       ) : (
         <NotLoggedIn />
