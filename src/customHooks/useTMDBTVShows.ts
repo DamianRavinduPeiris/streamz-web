@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { options } from "../util/options/Options";
 import TVShowType from "../util/types/TVShowTypes";
 
-export default function useTMDBRVShows(url: string): TVShowType[] {
+export default function useTMDBTVShows(url: string): TVShowType[] {
   const [tvShowData, setTVShowData] = useState(<TVShowType[]>[]);
   async function fetchData() {
     let tvShowArray: TVShowType[] = [];

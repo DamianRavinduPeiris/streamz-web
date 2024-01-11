@@ -1,27 +1,25 @@
 import { useEffect, useState } from "react";
-import useTMDB from "../customHooks/useTMDBMovies";
 import { Skeleton } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
-import movieType from "../util/types/MovieTypes";
 import TVShowType from "../util/types/TVShowTypes";
-
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import NotLoggedIn from "./NotLoggedIn";
 import { useSelector } from "react-redux";
+import useTMDBTVShows from "../customHooks/useTMDBTVShows";
 
 export default function TVShows() {
-  const [md, setMD] = useState<movieType[]>([]);
+  const [td, setTD] = useState<TVShowType[]>([]);
   const [page, setPageNumber] = useState<number>(1);
   const [refetch, setRefetchStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState<boolean>(false);
   const userFromStore = useSelector((state: any) => state.user);
-  let movieData: movieType[] = useTMDB(
-    import.meta.env.VITE_POPULAR_MOVIES_URL + page
+  let tvShowData: TVShowType[] = useTMDBTVShows(
+    import.meta.env.VITE_POPULAR_TV_SHOWS_URL + page
   );
   console.log("rendering");
   console.log("useEffect", userFromStore);
@@ -30,29 +28,27 @@ export default function TVShows() {
       setLoginStatus(true);
     }
 
-    setMD(movieData);
+    setTD(tvShowData);
     setRefetchStatus(false);
-
-    console.log("movieData", movieData);
-  }, [movieData, page]);
+  }, [tvShowData, page]);
 
   return (
     <div>
       {loginStatus ? (
         <>
-          {md.length <= 0 ? <LinearProgress color="info" /> : null}
+          {td.length <= 0 ? <LinearProgress color="info" /> : null}
           <BreadCrumb name="TV Shows." movieName={null} />
 
           <div className="flex flex-center justify-center align-center flex-wrap m-5">
-            {md.length > 0
-              ? movieData.map((movie, elementNumber) => {
+            {td.length > 0
+              ? tvShowData.map((tvShow, elementNumber) => {
                   return (
                     <JackInTheBox>
                       <div className="flex flex-col justify-center items-center">
                         <Link to="/stream">
                           <motion.img
-                            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                            alt={movie.title}
+                            src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`}
+                            alt={tvShow.name}
                             className="m-10 rounded-lg shadow-2xl "
                             style={{ width: "200px", height: "300px" }}
                             key={elementNumber}
@@ -62,10 +58,10 @@ export default function TVShows() {
                             whileHover={{ scale: 1.2 }}
                             onClick={(e) => {
                               localStorage.setItem(
-                                "movie",
-                                JSON.stringify(movie)
+                                "tvShow",
+                                JSON.stringify(tvShow)
                               );
-                              console.log(movie.id);
+                              console.log(tvShow.id);
                             }}
                           />
                         </Link>
@@ -73,13 +69,13 @@ export default function TVShows() {
                           className="font-tilt"
                           style={{ fontSize: "0.8rem" }}
                         >
-                          {movie.title}
+                          {tvShow.name}
                         </h1>
                         <h1
                           className="font-tilt mt-2"
                           style={{ fontSize: "0.8rem" }}
                         >
-                          ⭐{movie.vote_average}
+                          ⭐{tvShow.vote_average}
                         </h1>
                       </div>
                     </JackInTheBox>
@@ -113,7 +109,7 @@ export default function TVShows() {
                   count={100}
                   onChange={(event, page) => {
                     setPageNumber(page);
-                    setMD([]);
+                    setTD([]);
                     setRefetchStatus(true);
                   }}
                 />
