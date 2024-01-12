@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 interface propTypes {
   name: string;
-  movieName: string|null;
+  movieName: string|null|undefined;
 }
 
 export default function BreadCrumb(

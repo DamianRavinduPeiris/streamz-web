@@ -7,11 +7,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Stream from "./pages/Stream";
 import Login from "./pages/Login";
-import { useEffect } from "react";
+
 
 import Favorites from "./pages/Favourites";
 import WatchLater from "./pages/WatchLater";
 import TVShows from "./pages/TVShows";
+import TVStream from "./pages/TVStream";
 
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/favourites" element={<Favorites />} />
           <Route path="/watchlater" element={<WatchLater />} />
+          <Route path="/tvStream" element={<TVStream />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

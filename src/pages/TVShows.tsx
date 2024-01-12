@@ -45,7 +45,7 @@ export default function TVShows() {
                   return (
                     <JackInTheBox>
                       <div className="flex flex-col justify-center items-center">
-                        <Link to="/stream">
+                        <Link to="/tvStream">
                           <motion.img
                             src={`https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`}
                             alt={tvShow.name}
