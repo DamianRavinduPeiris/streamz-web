@@ -4,19 +4,16 @@ import showAlert from "../alerts/ShowAlert";
 import alertTypes from "../util/types/AlertTypes";
 import AuthType from "../util/types/AuthType";
 import axios from "axios";
-import {adminAuth }from '../headers/AdminHeader';
-
-
-
-
-
+import { adminAuth } from "../headers/AdminHeader";
 
 export default function AdminLogin() {
   const [auth, setAuth] = useState<AuthType>({ email: "", password: "" });
-  useEffect(()=>{
-    localStorage.setItem("adminToken",JSON.stringify(import.meta.env.VITE_ADMIN_JWT))
-
-  },[])
+  useEffect(() => {
+    localStorage.setItem(
+      "adminToken",
+      JSON.stringify(import.meta.env.VITE_ADMIN_JWT)
+    );
+  }, []);
   return (
     <div>
       <section>
@@ -66,23 +63,27 @@ export default function AdminLogin() {
                   className="btn btn-primary"
                   value="Login"
                   onClick={(e) => {
-                    console.log(auth)
+                    console.log(auth);
                     e.preventDefault();
-                    axios.post('http://localhost:3000/admin/login', auth,{headers:adminAuth})
-                    .then((res)=>{
-                      console.log(res.data)
-                      if(res.data.isAuthorized===true){
-                        showAlert(alertTypes.SUCCESS,"Successfully logged in!","🍾")
-                        
-                      }else{
-                        showAlert(alertTypes.ERROR,res.data.message,"🤦‍♂️")
-                      }
-
-                    }).catch((er)=>{
-                      showAlert(alertTypes.ERROR,er.message,"😪")
-
-                    })
-
+                    axios
+                      .post("http://localhost:3000/admin/login", auth, {
+                        headers: adminAuth,
+                      })
+                      .then((res) => {
+                        console.log(res.data);
+                        if (res.data.isAuthorized === true) {
+                          showAlert(
+                            alertTypes.SUCCESS,
+                            "Successfully logged in!",
+                            "🍾"
+                          );
+                        } else {
+                          showAlert(alertTypes.ERROR, res.data.message, "🤦‍♂️");
+                        }
+                      })
+                      .catch((er) => {
+                        showAlert(alertTypes.ERROR, er.message, "😪");
+                      });
                   }}
                 />
               </div>

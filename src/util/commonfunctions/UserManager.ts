@@ -1,6 +1,7 @@
 import axios from "axios";
 import UserType from "../types/UserTypes";
 import { auth } from "../../headers/Headers";
+import { adminAuth } from "../../headers/AdminHeader";
 
 export async function fetchUser(email: string) {
   console.log("fetching ", email);
@@ -16,13 +17,38 @@ export async function fetchUser(email: string) {
   return null;
 }
 export async function updateUser(user: UserType) {
-  console.log("token ", auth);
   try {
-    let res = await axios.put("http://localhost:3000/user/update", user, {headers: auth,});
-    
+    let res = await axios.put("http://localhost:3000/user/update", user, {
+      headers: adminAuth,
+    });
+
     return res.data;
   } catch (error) {
     console.log("An Error occurred while updating the user :", error);
   }
 }
+export async function deleteUser(email: string) {
+  try {
+    let res = await axios.delete(
+      "http://localhost:3000/user/delete?email=" + email,
+      {
+        headers: adminAuth,
+      }
+    );
 
+    return res.data;
+  } catch (error) {
+    console.log("An Error occurred while deleting the user :", error);
+  }
+}
+
+export async function getAllusers() {
+  try {
+    let res = await axios.get("http://localhost:3000/user/getAll", {
+      headers: adminAuth,
+    });
+    return res.data.data;
+  } catch (error: any) {
+    console.log("An Error occurred while fetching users :", error.message);
+  }
+}

@@ -1,4 +1,4 @@
-import { calcLength, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { sigInWithGoogle } from "../auth/FireBase";
 import { LoginStatusContext } from "../contexts/LoginContext";
