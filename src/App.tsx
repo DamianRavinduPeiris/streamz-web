@@ -9,17 +9,21 @@ import Stream from "./pages/Stream";
 import Login from "./pages/Login";
 
 
+
+
 import Favorites from "./pages/Favourites";
 import WatchLater from "./pages/WatchLater";
 import TVShows from "./pages/TVShows";
 import TVStream from "./pages/TVStream";
-
+import AdminLogin from "./components/AdminLogin";
 
 
 function App() {
+  
+
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter >
         <NavBar />
         <Routes>
           <Route path="/" element={<Header />} />
@@ -30,11 +34,13 @@ function App() {
           <Route path="/favourites" element={<Favorites />} />
           <Route path="/watchlater" element={<WatchLater />} />
           <Route path="/tvStream" element={<TVStream />} />
+          <Route path="/admin" element={<AdminLogin />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
+
     </>
   );
 }

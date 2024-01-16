@@ -8,13 +8,14 @@ import {
   Movie,
 } from "@mui/icons-material";
 import Cookie from "js-cookie";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import ProfilePic from "../components/ProfilePic";
 import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const [loginStatus, setLoginStatus] = useState(false);
+
   const userFromStore = useSelector((state: any) => state.user);
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const NavBar = () => {
                     </>
                   )}
                 </div>
+
                 <li className="mt-8">
                   <Link to={"/"}>
                     <a className="font-tilt">
