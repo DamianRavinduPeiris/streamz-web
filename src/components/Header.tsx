@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { sigInWithGoogle } from "../auth/FireBase";
-import { LoginStatusContext } from "../contexts/LoginContext";
+
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 export default function Header() {
+  
+  
   const dispatch = useDispatch();
   const userFromStore = useSelector((state: any) => state.user);
   function handleSignIn() {
@@ -13,7 +16,20 @@ export default function Header() {
   }
   console.log("userFromStore-header", userFromStore);
   const navigate = useNavigate();
-  navigate("/explore");
+  
+  
+  useEffect(()=>{
+    
+    if(userFromStore!=null){
+      navigate("/explore");
+
+    }
+    
+
+
+
+
+},[userFromStore])
 
   return (
     <motion.div

@@ -5,8 +5,10 @@ import alertTypes from "../util/types/AlertTypes";
 import AuthType from "../util/types/AuthType";
 import axios from "axios";
 import { adminAuth } from "../headers/AdminHeader";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
+  const navigate = useNavigate();
   const [auth, setAuth] = useState<AuthType>({ email: "", password: "" });
   useEffect(() => {
     localStorage.setItem(
@@ -77,6 +79,9 @@ export default function AdminLogin() {
                             "Successfully logged in!",
                             "🍾"
                           );
+                          setTimeout(() => {
+                            navigate("/users");
+                          }, 2000);
                         } else {
                           showAlert(alertTypes.ERROR, res.data.message, "🤦‍♂️");
                         }

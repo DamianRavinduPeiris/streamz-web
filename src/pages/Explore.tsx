@@ -23,6 +23,7 @@ export default function Explore() {
   let movieData: movieType[] = useTMDBMovies(
     import.meta.env.VITE_POPULAR_MOVIES_URL + page
   );
+  
   console.log("rendering");
   console.log("useEffect", userFromStore);
   useEffect(() => {
