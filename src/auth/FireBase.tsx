@@ -45,7 +45,7 @@ export const sigInWithGoogle = (dispatch, userFromStore) => {
 async function isExists(email: string) {
   try {
     let result = await axios.get(
-      "http://localhost:3000/user/search?email=" + email
+      `${import.meta.env.VITE_BASE_URL}/user/search?email=` + email
     );
     console.log("result heheh", result.data);
 
@@ -73,7 +73,7 @@ async function saveUser(user: UserType): Promise<void> {
   } else {
     try {
       let status = await axios.post(
-        "http://localhost:3000/user/saveUser",
+        `${import.meta.env.VITE_BASE_URL}/user/saveUser`,
         user
       );
       if (status.data.isSaved) {
