@@ -2,8 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import UserType from "../util/types/UserTypes";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
-import {Headers} from '../headers/Headers'
+import toast from "react-hot-toast";
+
 
 
 const firebaseConfig = {
@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export const sigInWithGoogle = (dispatch, userFromStore) => {
+export const sigInWithGoogle = (dispatch:any, userFromStore:any) => {
   signInWithPopup(auth, provider)
     .then((res) => {
       const user: UserType = {

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { getAllusers } from "../util/commonfunctions/UserManager";
 import UserType from "../util/types/UserTypes";
-import { deleteUser, updateUser } from "../util/commonfunctions/UserManager";
+import { deleteUser } from "../util/commonfunctions/UserManager";
 import showAlert from "../alerts/ShowAlert";
 import { motion } from "framer-motion";
 import alertTypes from "../util/types/AlertTypes";

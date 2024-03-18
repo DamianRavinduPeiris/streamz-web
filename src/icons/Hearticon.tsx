@@ -1,5 +1,4 @@
 import { CiHeart } from "react-icons/ci";
-import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
 export default function Hearticon() {

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import {
-  Explore,
+
   Home,
   WatchLater,
   Favorite,
   TvRounded,
   Movie,
 } from "@mui/icons-material";
-import Cookie from "js-cookie";
-import { Link, useLocation } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import Cookie from 'js-cookie'
+
+import { Link} from "react-router-dom";
+import  { Toaster } from "react-hot-toast";
 import ProfilePic from "../components/ProfilePic";
 import { useSelector } from "react-redux";
 

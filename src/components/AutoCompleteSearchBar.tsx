@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom";
+
 import Autocomplete from "@mui/material/Autocomplete";
 import { debounce } from "lodash";
 import { useState, useEffect } from "react";
 import useTMDB from "../customHooks/useTMDBMovies";
 import { TextField } from "@mui/material";
-import Alert from "../alerts/Alert";
-import Login from "../pages/Login";
-import { useLocation } from "react-router-dom";
-import Avatar from "./Avatar";
+
 
 export default function AutoCompleteSearchBar() {
     const [movieName, setMovieName] = useState<string>("");
@@ -15,6 +12,7 @@ export default function AutoCompleteSearchBar() {
   const [movieIds, setMovieIds] = useState<number[]>([]);
   const [searchStatus, setSearchStatus] = useState<boolean>(false);
   const debouncedSearchMovie = debounce((newInputValue: string) => {
+    console.log(movieIds)
     setMovieName(newInputValue);
     setSearchStatus(true);
   }, 2000);
@@ -35,6 +33,7 @@ export default function AutoCompleteSearchBar() {
                     style={{ width: 300 }}
                     options={movieNames}
                     onChange={(event, value) => {
+                      console.log(event)
                       if (value) {
                         setMovieName(value);
                         setSearchStatus(false);
@@ -47,6 +46,8 @@ export default function AutoCompleteSearchBar() {
                       }
                     }}
                     onInputChange={(event, newInputValue) => {
+
+                      console.log(event)
                       debouncedSearchMovie(newInputValue);
                     }}
                     renderInput={(params) => (

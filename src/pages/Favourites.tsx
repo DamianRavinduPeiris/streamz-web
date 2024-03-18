@@ -86,7 +86,7 @@ export default function Favorites() {
                         animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
                         transition={{ delay: 0.1 }}
                         whileHover={{ scale: 1.2 }}
-                        onClick={(e) => {
+                        onClick={() => {
                           localStorage.setItem("movie", JSON.stringify(movie));
                           console.log(movie.id);
                           navigate("/stream");

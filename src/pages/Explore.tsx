@@ -62,6 +62,7 @@ export default function Explore() {
                             transition={{ delay: 0.1 }}
                             whileHover={{ scale: 1.2 }}
                             onClick={(e) => {
+                              console.log(e)
                               localStorage.setItem(
                                 "movie",
                                 JSON.stringify(movie)
@@ -113,6 +114,7 @@ export default function Explore() {
                 <Pagination
                   count={100}
                   onChange={(event, page) => {
+                    console.log(event);
                     setPageNumber(page);
                     setMD([]);
                     setRefetchStatus(true);

@@ -1,6 +1,6 @@
 import axios from "axios";
 import UserType from "../types/UserTypes";
-import { auth } from "../../headers/Headers";
+
 import { adminAuth } from "../../headers/AdminHeader";
 
 export async function fetchUser(email: string) {

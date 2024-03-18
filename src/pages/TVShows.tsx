@@ -56,7 +56,7 @@ export default function TVShows() {
                             animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
                             transition={{ delay: 0.1 }}
                             whileHover={{ scale: 1.2 }}
-                            onClick={(e) => {
+                            onClick={() => {
                               localStorage.setItem(
                                 "tvShow",
                                 JSON.stringify(tvShow)
@@ -108,6 +108,7 @@ export default function TVShows() {
                 <Pagination
                   count={100}
                   onChange={(event, page) => {
+                    console.log(event)
                     setPageNumber(page);
                     setTD([]);
                     setRefetchStatus(true);

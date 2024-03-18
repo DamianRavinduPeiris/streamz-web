@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ShowAlert from "../alerts/ShowAlert";
+
 import showAlert from "../alerts/ShowAlert";
 import alertTypes from "../util/types/AlertTypes";
 import AuthType from "../util/types/AuthType";

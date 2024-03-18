@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sigInWithGoogle } from "../auth/FireBase";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 
 export default function Header() {
