@@ -19,7 +19,8 @@ import TVShows from "./pages/TVShows";
 import TVStream from "./pages/TVStream";
 import AdminLogin from "./components/AdminLogin";
 import UserTable from "./components/UserTable";
-import AutoCompleteSearchBar from "./components/AutoCompleteSearchBar";
+import SearchBar from "./components/SearchBar";
+
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
           <Route path="/tvStream" element={<TVStream />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/users" element={<UserTable />} />
-          <Route path="/search" element={<AutoCompleteSearchBar />} />
+          <Route path="/search" element={<SearchBar />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
