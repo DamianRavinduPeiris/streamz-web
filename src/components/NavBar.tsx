@@ -6,15 +6,20 @@ import {
   Favorite,
   TvRounded,
   Movie,
+  Logout,
   
 } from "@mui/icons-material";
 import SearchIcon from '@mui/icons-material/Search';
+import LogoutIcon from '@mui/icons-material/Logout';
 import Cookie from 'js-cookie'
 
 import { Link} from "react-router-dom";
 import  { Toaster } from "react-hot-toast";
 import ProfilePic from "../components/ProfilePic";
 import { useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../auth/FireBase";
+
 
 const NavBar = () => {
   const [loginStatus, setLoginStatus] = useState(false);
@@ -140,6 +145,21 @@ const NavBar = () => {
                       <WatchLater style={{ margin: "0.2rem" }} /> Watch Later.
                     </a>
                   </Link>
+                </li>
+                <li className="mt-5">
+                  
+                    <a className="font-tilt" onClick={async()=>{
+                      signOut(auth).then(()=>{
+                        Cookie.remove("status")
+                        Cookie.remove("user")
+                        Cookie.remove("token")
+                        //reset the redux store
+                        window.location.href = "/"
+                      })
+                    }}>
+                      <Logout style={{ margin: "0.2rem" }}/> Logout.
+                    </a>
+                  
                 </li>
                 
               </ul>

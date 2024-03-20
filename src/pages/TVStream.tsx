@@ -53,7 +53,7 @@ export default function TVStream() {
               <div className="badge badge-error font-tilt">
                 {td?.first_air_date}
               </div>
-              <h1 className="text-5xl  font-tilt text-black m-1 mt-3">
+              <h1 className="text-3xl md:text-5xl  font-tilt text-black m-1 mt-3">
                 {td?.name}
                 <sup className="m-1" style={{ fontSize: "1rem" }}>
                   ⭐{td?.vote_average}
