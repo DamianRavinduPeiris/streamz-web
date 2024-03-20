@@ -47,14 +47,14 @@ export default function Stream() {
   return (
     <>
       <BreadCrumb name="Streaming." movieName={md.title} />
-      <div className="flex flex-center justify-center hero min-h-screen bg-[#F2F1EB] rounded ">
+      <div className="flex flex-col md:flex-row justify-center hero min-h-screen bg-[#F2F1EB] rounded ">
         {!isPlayed ? (
           <>
             <motion.img
               src={`https://image.tmdb.org/t/p/w500` + md.poster_path}
               alt=""
               className="max-w-sm rounded-lg shadow-2xl m-5"
-              style={{ height: "500px" }}
+              style={{ height: "400px" }}
               initial={{ scale: 0 }}
               animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
               transition={{ delay: 0.1 }}

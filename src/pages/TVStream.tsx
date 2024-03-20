@@ -31,7 +31,7 @@ export default function TVStream() {
   return (
     <>
       <BreadCrumb name="Streaming." movieName={td?.name} />
-      <div className="flex flex-center justify-center hero min-h-screen bg-[#F2F1EB] rounded ">
+      <div className="flex flex-col md:flex-row justify-center hero min-h-screen bg-[#F2F1EB] rounded ">
         {!isPlayed ? (
           <>
             <motion.img
