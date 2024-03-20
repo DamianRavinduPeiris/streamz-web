@@ -26,9 +26,9 @@ export default function AutoCompleteSearchBar() {
     });
   }, [searchStatus, movieData]);
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center'>
         <Autocomplete
-                    className="border-2 border-gray-300 rounded-lg"
+                    className="m-5"
                     disableClearable={true}
                     style={{ width: 300 }}
                     options={movieNames}
@@ -58,6 +58,8 @@ export default function AutoCompleteSearchBar() {
                       />
                     )}
                   />
+                  <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*LpxLQj3xgPwMaUjaM3NW7g.jpeg" alt=""  className="mt-10 w-50 h-80" />
+                  
       
     </div>
   )

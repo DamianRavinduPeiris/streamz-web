@@ -9,6 +9,7 @@ import { JackInTheBox } from "react-awesome-reveal";
 import movieType from "../util/types/MovieTypes";
 
 
+
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import NotLoggedIn from "./NotLoggedIn";
@@ -43,6 +44,7 @@ export default function Explore() {
         <>
           {md.length <= 0 ? <LinearProgress color="info" /> : null}
           <BreadCrumb name="Movies." movieName={null} />
+          
 
           <div className="flex flex-center justify-center align-center flex-wrap m-5">
             {md.length > 0

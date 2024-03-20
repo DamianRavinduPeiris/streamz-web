@@ -6,7 +6,9 @@ import {
   Favorite,
   TvRounded,
   Movie,
+  
 } from "@mui/icons-material";
+import SearchIcon from '@mui/icons-material/Search';
 import Cookie from 'js-cookie'
 
 import { Link} from "react-router-dom";
@@ -86,10 +88,17 @@ const NavBar = () => {
                   )}
                 </div>
 
-                <li className="mt-8">
+                <li className="mt-5">
                   <Link to={"/"}>
                     <a className="font-tilt">
                       <Home style={{ margin: "0.2rem" }} /> Home.
+                    </a>
+                  </Link>
+                </li>
+                <li className="mt-5">
+                  <Link to={"/search"}>
+                    <a className="font-tilt">
+                      <SearchIcon style={{ margin: "0.2rem" }} /> Search.
                     </a>
                   </Link>
                 </li>
@@ -132,6 +141,7 @@ const NavBar = () => {
                     </a>
                   </Link>
                 </li>
+                
               </ul>
             </div>
           </div>
