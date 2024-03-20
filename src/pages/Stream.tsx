@@ -69,7 +69,7 @@ export default function Stream() {
               <div className="badge badge-error font-tilt">
                 {md.release_date}
               </div>
-              <h1 className="text-5xl  font-tilt text-black m-1 mt-3">
+              <h1 className="text-3xl md:text-5xl font-tilt text-black m-1 mt-3 md:text:3xl">
                 {md.title}
                 <sup className="m-1" style={{ fontSize: "1rem" }}>
                   ⭐{md.vote_average}
@@ -83,8 +83,8 @@ export default function Stream() {
                   marginTop: "20px",
                   fontFamily: "Tilt Warp, sans-serif",
                 }}
-                variant="contained"
-                color="info"
+                variant="outlined"
+                color="primary"
                 className="w-20 font-tilt rounded bg-black"
                 startIcon={<PlayArrow />}
                 onClick={() => {
@@ -94,7 +94,7 @@ export default function Stream() {
                 Play.
               </Button>
 
-              <div className="card-actions justify-end">
+              <div className="card-actions justify-end ">
                 {genres? genres.map((g, index) => {
                   return (
                     <div className="badge badge-ghist m-2" key={index}>

@@ -67,8 +67,8 @@ export default function TVStream() {
                   marginTop: "20px",
                   fontFamily: "Tilt Warp, sans-serif",
                 }}
-                variant="contained"
-                color="info"
+                variant="outlined"
+                color="primary"
                 className="w-20 font-tilt rounded bg-black"
                 startIcon={<PlayArrow />}
                 onClick={() => {
