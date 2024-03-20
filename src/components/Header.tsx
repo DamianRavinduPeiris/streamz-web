@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { sigInWithGoogle } from "../auth/FireBase";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect} from "react";
-
+import { useEffect } from "react";
 
 export default function Header() {
-  
-  
   const dispatch = useDispatch();
   const userFromStore = useSelector((state: any) => state.user);
   function handleSignIn() {
@@ -16,20 +13,12 @@ export default function Header() {
   }
   console.log("userFromStore-header", userFromStore);
   const navigate = useNavigate();
-  
-  
-  useEffect(()=>{
-    
-    if(userFromStore!=null){
+
+  useEffect(() => {
+    if (userFromStore != null) {
       navigate("/explore");
-
     }
-    
-
-
-
-
-},[userFromStore])
+  }, [userFromStore]);
 
   return (
     <motion.div
@@ -66,16 +55,17 @@ export default function Header() {
           >
             {" "}
             <button
-              className="px-4 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150"
+              className="flex items-center transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 active:bg-indigo-700"
               onClick={handleSignIn}
             >
               <img
-                className="w-6 h-6"
+                className="w-6 h-6 mr-2" // Add margin to the right of the image
                 src="https://www.svgrepo.com/show/475656/google-color.svg"
-                loading="lazy"
                 alt="google logo"
               />
-              <span>Continue with Google.</span>
+              <span className="text-white font-tilt">
+                Continue with Google.
+              </span>
             </button>
           </motion.div>
         </div>
