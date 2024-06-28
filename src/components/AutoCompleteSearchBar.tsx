@@ -1,18 +1,16 @@
-
 import Autocomplete from "@mui/material/Autocomplete";
 import { debounce } from "lodash";
 import { useState, useEffect } from "react";
 import useTMDB from "../customHooks/useTMDBMovies";
 import { TextField } from "@mui/material";
 
-
 export default function AutoCompleteSearchBar() {
-    const [movieName, setMovieName] = useState<string>("");
+  const [movieName, setMovieName] = useState<string>("");
   const [movieNames, setMovieNames] = useState<string[]>([]);
   const [movieIds, setMovieIds] = useState<number[]>([]);
   const [searchStatus, setSearchStatus] = useState<boolean>(false);
   const debouncedSearchMovie = debounce((newInputValue: string) => {
-    console.log(movieIds)
+    console.log(movieIds);
     setMovieName(newInputValue);
     setSearchStatus(true);
   }, 2000);
@@ -26,42 +24,32 @@ export default function AutoCompleteSearchBar() {
     });
   }, [searchStatus, movieData]);
   return (
-    <div className='flex flex-col justify-center items-center'>
-        <Autocomplete
-                    className="m-5"
-                    freeSolo={true}
-                    disableClearable={true}
-                    style={{ width: 300 }}
-                    options={movieNames}
-                    onChange={(event, value) => {
-                      console.log(event)
-                      if (value) {
-                        setMovieName(value);
-                        setSearchStatus(false);
-                        localStorage.setItem(
-                          "movie",
-                          JSON.stringify(movieData[movieNames.indexOf(value)])
-                        );
+    <div className="flex flex-col justify-center items-center">
+      <Autocomplete
+        className="m-5"
+        freeSolo={true}
+        disableClearable={true}
+        style={{ width: 300 }}
+        options={movieNames}
+        onChange={(event, value) => {
+          console.log(event);
+          if (value) {
+            setMovieName(value);
+            setSearchStatus(false);
+            localStorage.setItem(
+              "movie",
+              JSON.stringify(movieData[movieNames.indexOf(value)])
+            );
 
-                        window.location.href = "/stream";
-                      }
-                    }}
-                    onInputChange={(event, newInputValue) => {
-
-                      console.log(event)
-                      debouncedSearchMovie(newInputValue);
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        
-                        
-                      />
-                    )}
-                  />
-                  
-                  
-      
+            window.location.href = "/stream";
+          }
+        }}
+        onInputChange={(event, newInputValue) => {
+          console.log(event);
+          debouncedSearchMovie(newInputValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
     </div>
-  )
+  );
 }

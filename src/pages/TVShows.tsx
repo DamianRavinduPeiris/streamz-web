@@ -18,7 +18,7 @@ export default function TVShows() {
   const [refetch, setRefetchStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState<boolean>(false);
   const userFromStore = useSelector((state: any) => state.user);
-  let tvShowData: TVShowType[] = useTMDBTVShows(
+  const tvShowData: TVShowType[] = useTMDBTVShows(
     import.meta.env.VITE_POPULAR_TV_SHOWS_URL + page
   );
   console.log("rendering");
@@ -108,7 +108,7 @@ export default function TVShows() {
                 <Pagination
                   count={100}
                   onChange={(event, page) => {
-                    console.log(event)
+                    console.log(event);
                     setPageNumber(page);
                     setTD([]);
                     setRefetchStatus(true);

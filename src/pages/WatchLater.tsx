@@ -18,13 +18,13 @@ export default function WatchLater() {
   const [md, setMD] = useState<movieType[]>([]);
   const navigate = useNavigate();
   async function getUser() {
-    let userData = await fetchUser(userFromStore.email);
+    const userData = await fetchUser(userFromStore.email);
     setUser(userData);
   }
 
   async function fetchMovies() {
     if (user) {
-      let movieData: Promise<any>[] = user.watchLaterList.map(async (mID) => {
+      const movieData: Promise<any>[] = user.watchLaterList.map(async (mID) => {
         try {
           return axios.get(
             import.meta.env.VITE_SEARCH_BY_ID_URL + mID,
@@ -37,8 +37,8 @@ export default function WatchLater() {
           );
         }
       });
-      let resolvedData = await Promise.all(movieData);
-      let finalData = resolvedData.map((movie) => {
+      const resolvedData = await Promise.all(movieData);
+      const finalData = resolvedData.map((movie) => {
         return movie.data;
       });
       setMD(finalData);

@@ -24,9 +24,7 @@ export default function Empty(data: propTypes) {
             {data.topic}
           </h1>
 
-          <p className="mt-6 font-tilt">
-            {data.msg}
-          </p>
+          <p className="mt-6 font-tilt">{data.msg}</p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link to="/">
               <a

@@ -7,7 +7,6 @@ export default function Login() {
       animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}
       transition={{ delay: 0.1 }}
     >
-        
       <div className="flex items-center justify-center flex-col mt-10">
         <h1 className="text-3xl font-extrabold text-center mt-">
           Let's log you in!
@@ -41,9 +40,7 @@ export default function Login() {
         >
           Don't have an account? Register here.
         </a>
-        
       </div>
-      
     </motion.div>
   );
 }

@@ -47,7 +47,10 @@ export default function UserTable() {
                 <div className="max-w-md">
                   <h1 className="mb-5 text-5xl font-bold">AW SNAP!</h1>
                   <p className="mb-5">No Users registered yet.</p>
-                  <button className="btn btn-primary" onClick={() => navigate("/")}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate("/")}
+                  >
                     Back to home.
                   </button>
                 </div>
@@ -63,8 +66,12 @@ export default function UserTable() {
                     <th className="font-tilt text-2xl">Email</th>
                     <th className="font-tilt text-2xl">Update</th>
                     <th className="font-tilt text-2xl">Delete</th>
-                    <th className="font-tilt text-2xl hidden md:table-cell">Favourites</th>
-                    <th className="font-tilt text-2xl hidden md:table-cell">Watch Later</th>
+                    <th className="font-tilt text-2xl hidden md:table-cell">
+                      Favourites
+                    </th>
+                    <th className="font-tilt text-2xl hidden md:table-cell">
+                      Watch Later
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -97,13 +104,25 @@ export default function UserTable() {
                             deleteUser(user.email)
                               .then((res) => {
                                 if (res.isDeleted) {
-                                  showAlert(alertTypes.SUCCESS, "User Deleted Successfully", "🎊");
+                                  showAlert(
+                                    alertTypes.SUCCESS,
+                                    "User Deleted Successfully",
+                                    "🎊"
+                                  );
                                 } else {
-                                  showAlert(alertTypes.ERROR, "User not found!", "🥴");
+                                  showAlert(
+                                    alertTypes.ERROR,
+                                    "User not found!",
+                                    "🥴"
+                                  );
                                 }
                               })
                               .catch((er) => {
-                                showAlert(alertTypes.ERROR, "An error occurred while deleting user " + er, "😢");
+                                showAlert(
+                                  alertTypes.ERROR,
+                                  "An error occurred while deleting user " + er,
+                                  "😢"
+                                );
                               });
                           }}
                         >
@@ -111,10 +130,14 @@ export default function UserTable() {
                         </button>
                       </td>
                       <td className="hidden md:table-cell">
-                        {user.favouriteList.length === 0 ? "Empty" : user.favouriteList.join(", ")}
+                        {user.favouriteList.length === 0
+                          ? "Empty"
+                          : user.favouriteList.join(", ")}
                       </td>
                       <td className="hidden md:table-cell">
-                        {user.watchLaterList.length === 0 ? "Empty" : user.watchLaterList.join(", ")}
+                        {user.watchLaterList.length === 0
+                          ? "Empty"
+                          : user.watchLaterList.join(", ")}
                       </td>
                     </tr>
                   ))}

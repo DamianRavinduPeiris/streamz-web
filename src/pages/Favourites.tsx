@@ -18,12 +18,12 @@ export default function Favorites() {
   const [md, setMD] = useState<movieType[]>([]);
   const navigate = useNavigate();
   async function getUser() {
-    let userData: UserType = await fetchUser(userFromStore.email);
+    const userData: UserType = await fetchUser(userFromStore.email);
     console.log("userData", userData.favouriteList);
     setUser(userData);
   }
   async function fetchMovies() {
-    let movieData: Promise<any>[] = (user?.favouriteList ?? []).map(
+    const movieData: Promise<any>[] = (user?.favouriteList ?? []).map(
       async (mid: number) => {
         try {
           return await axios.get(
@@ -38,8 +38,8 @@ export default function Favorites() {
         }
       }
     );
-    let resolvedData = await Promise.all(movieData || []);
-    let finalData = resolvedData.map((movie) => {
+    const resolvedData = await Promise.all(movieData || []);
+    const finalData = resolvedData.map((movie) => {
       return movie?.data;
     });
     console.log("finalData", finalData);

@@ -6,7 +6,7 @@ import { adminAuth } from "../../headers/AdminHeader";
 export async function fetchUser(email: string) {
   console.log("fetching ", email);
   try {
-    let userData = await axios.get(
+    const userData = await axios.get(
       `${import.meta.env.VITE_BASE_URL}/user/search?email=` + email
     );
     console.log("result ", userData.data);
@@ -18,7 +18,7 @@ export async function fetchUser(email: string) {
 }
 export async function updateUser(user: UserType) {
   try {
-    let res = await axios.put(`${import.meta.env.VITE_BASE_URL}/user/update`, user, {
+    const res = await axios.put(`${import.meta.env.VITE_BASE_URL}/user/update`, user, {
       headers: adminAuth,
     });
 
@@ -29,7 +29,7 @@ export async function updateUser(user: UserType) {
 }
 export async function deleteUser(email: string) {
   try {
-    let res = await axios.delete(
+    const res = await axios.delete(
       `${import.meta.env.VITE_BASE_URL}/user/delete?email=` + email,
       {
         headers: adminAuth,
@@ -44,7 +44,7 @@ export async function deleteUser(email: string) {
 
 export async function getAllusers() {
   try {
-    let res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/getAll`, {
+    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/getAll`, {
       headers: adminAuth,
     });
     return res.data.data;

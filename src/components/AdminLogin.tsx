@@ -68,9 +68,13 @@ export default function AdminLogin() {
                     console.log(auth);
                     e.preventDefault();
                     axios
-                      .post("http://localhost:3000/admin/login", auth, {
-                        headers: adminAuth,
-                      })
+                      .post(
+                        `${import.meta.env.VITE_BASE_URL}/admin/login`,
+                        auth,
+                        {
+                          headers: adminAuth,
+                        }
+                      )
                       .then((res) => {
                         console.log(res.data);
                         if (res.data.isAuthorized === true) {

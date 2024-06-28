@@ -4,8 +4,6 @@ import UserType from "../util/types/UserTypes";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-
-
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -19,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-export const sigInWithGoogle = (dispatch:any, userFromStore:any) => {
+export const sigInWithGoogle = (dispatch: any, userFromStore: any) => {
   signInWithPopup(auth, provider)
     .then((res) => {
       const user: UserType = {
@@ -77,16 +75,15 @@ async function saveUser(user: UserType): Promise<void> {
         user
       );
       if (status.data.isSaved) {
-       localStorage.setItem("token", JSON.stringify(status.data.jwt));
+        localStorage.setItem("token", JSON.stringify(status.data.jwt));
         toast.success("Successfully registered!!", {
           icon: "🎇",
-          style : {
-            fontFamily: "Tilt Warp, Sans-Serif"
-          }
-          
+          style: {
+            fontFamily: "Tilt Warp, Sans-Serif",
+          },
         });
 
-       // window.location.href = "/explore";
+        // window.location.href = "/explore";
       } else {
         toast.error("An error occurred while registering!", {
           icon: "😢",

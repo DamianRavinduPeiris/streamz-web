@@ -28,7 +28,7 @@ export default function Stream() {
   const [isPlayed, setPlayStatus] = useState<boolean>(false);
 
   useEffect(() => {
-    let movie = JSON.parse(localStorage.getItem("movie") as string);
+    const movie = JSON.parse(localStorage.getItem("movie") as string);
     setMD(movie);
     const genreArray: string[] = [];
     if (movie.genre_ids) {
@@ -41,7 +41,6 @@ export default function Stream() {
       });
       setGenres(genreArray);
     }
-    
   }, []);
 
   return (
@@ -95,20 +94,22 @@ export default function Stream() {
               </Button>
 
               <div className="card-actions justify-end ">
-                {genres? genres.map((g, index) => {
-                  return (
-                    <div className="badge badge-ghist m-2" key={index}>
-                      {g}
-                    </div>
-                  );
-                }): null}
+                {genres
+                  ? genres.map((g, index) => {
+                      return (
+                        <div className="badge badge-ghist m-2" key={index}>
+                          {g}
+                        </div>
+                      );
+                    })
+                  : null}
               </div>
               <div className="flex flex-row justify-start">
                 <div
                   onClick={async () => {
-                    let user = await fetchUser(userFromStore.email);
+                    const user = await fetchUser(userFromStore.email);
                     console.log("received user", user);
-                    let favouriteList = user.favouriteList;
+                    const favouriteList = user.favouriteList;
                     let array: number[] = [];
                     if (favouriteList.includes(md.id)) {
                       array = user.favouriteList.filter((id: number) => {
@@ -116,7 +117,7 @@ export default function Stream() {
                       });
                       console.log("array", array);
                       user.favouriteList = array;
-                      let res = await updateUser(user);
+                      const res = await updateUser(user);
                       console.log("res", res);
                       if (res.isUpdated) {
                         showAlert(
@@ -135,8 +136,8 @@ export default function Stream() {
                     } else {
                       console.log("else");
                       user.favouriteList.push(md.id);
-                      console.log("updated fl", user)
-                      let res = await updateUser(user);
+                      console.log("updated fl", user);
+                      const res = await updateUser(user);
                       console.log("res", res);
                       if (res.isUpdated) {
                         showAlert(
@@ -159,9 +160,9 @@ export default function Stream() {
                 </div>
                 <div
                   onClick={async () => {
-                    let user = await fetchUser(userFromStore.email);
+                  const user = await fetchUser(userFromStore.email);
                     console.log("received user", user);
-                    let watchList = user.watchLaterList;
+                    const watchList = user.watchLaterList;
                     let array: number[] = [];
                     if (watchList.includes(md.id)) {
                       array = user.watchLaterList.filter((id: number) => {
@@ -169,7 +170,7 @@ export default function Stream() {
                       });
                       console.log("array", array);
                       user.watchLaterList = array;
-                      let res = await updateUser(user);
+                     const res = await updateUser(user);
                       console.log("res", res);
                       if (res.isUpdated) {
                         showAlert(
@@ -189,7 +190,7 @@ export default function Stream() {
                       console.log("else");
                       user.watchLaterList.push(md.id);
                       console.log("updated wl", user);
-                      let res = await updateUser(user);
+                     const res = await updateUser(user);
                       console.log("res", res);
                       if (res.isUpdated) {
                         showAlert(

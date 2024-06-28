@@ -13,7 +13,7 @@ export default function TVStream() {
   const [isPlayed, setPlayStatus] = useState<boolean>(false);
 
   useEffect(() => {
-    let tvShow = JSON.parse(localStorage.getItem("tvShow") as string);
+    const tvShow = JSON.parse(localStorage.getItem("tvShow") as string);
     setTD(tvShow);
     const genreArray: string[] = [];
     if (tvShow.genre_ids) {

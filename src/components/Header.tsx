@@ -1,24 +1,18 @@
-// Import necessary libraries
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { sigInWithGoogle } from "../auth/FireBase";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-
 export default function Header() {
-
   const dispatch = useDispatch();
   const userFromStore = useSelector((state: any) => state.user);
-  
 
   function handleSignIn() {
     sigInWithGoogle(dispatch, userFromStore);
   }
 
-
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (userFromStore != null) {
@@ -26,7 +20,6 @@ export default function Header() {
     }
   }, [userFromStore]);
 
-  
   return (
     <motion.div
       className="mt-10 relative"
@@ -38,7 +31,6 @@ export default function Header() {
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 relative">
           <motion.div
-           
             className="mt-10 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
             initial={{ scale: 0 }}
             animate={{ x: 0, y: 0, scale: 1, rotate: 0 }}

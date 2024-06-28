@@ -8,11 +8,6 @@ import NotFound from "./pages/NotFound";
 import Stream from "./pages/Stream";
 import Login from "./pages/Login";
 
-
-
-
-
-
 import Favorites from "./pages/Favourites";
 import WatchLater from "./pages/WatchLater";
 import TVShows from "./pages/TVShows";
@@ -21,14 +16,10 @@ import AdminLogin from "./components/AdminLogin";
 import UserTable from "./components/UserTable";
 import SearchBar from "./components/SearchBar";
 
-
-
 function App() {
-  
-
   return (
     <>
-      <BrowserRouter >
+      <BrowserRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<Header />} />
@@ -47,7 +38,6 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-
     </>
   );
 }

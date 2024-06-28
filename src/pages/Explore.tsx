@@ -8,8 +8,6 @@ import { motion } from "framer-motion";
 import { JackInTheBox } from "react-awesome-reveal";
 import movieType from "../util/types/MovieTypes";
 
-
-
 import BreadCrumb from "../components/BreadCrumb";
 import { Link } from "react-router-dom";
 import NotLoggedIn from "./NotLoggedIn";
@@ -21,10 +19,10 @@ export default function Explore() {
   const [refetch, setRefetchStatus] = useState(false);
   const [loginStatus, setLoginStatus] = useState<boolean>(false);
   const userFromStore = useSelector((state: any) => state.user);
-  let movieData: movieType[] = useTMDBMovies(
+  const movieData: movieType[] = useTMDBMovies(
     import.meta.env.VITE_POPULAR_MOVIES_URL + page
   );
-  
+
   console.log("rendering");
   console.log("useEffect", userFromStore);
   useEffect(() => {
@@ -44,7 +42,6 @@ export default function Explore() {
         <>
           {md.length <= 0 ? <LinearProgress color="info" /> : null}
           <BreadCrumb name="Movies." movieName={null} />
-          
 
           <div className="flex flex-center justify-center align-center flex-wrap m-5">
             {md.length > 0
@@ -64,7 +61,7 @@ export default function Explore() {
                             transition={{ delay: 0.1 }}
                             whileHover={{ scale: 1.2 }}
                             onClick={(e) => {
-                              console.log(e)
+                              console.log(e);
                               localStorage.setItem(
                                 "movie",
                                 JSON.stringify(movie)
