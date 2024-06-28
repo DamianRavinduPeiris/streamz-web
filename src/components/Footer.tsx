@@ -16,7 +16,7 @@ export default function Footer() {
     </div>
   </nav> 
   <aside>
-    <p className="font-tilt">Copyright © 2024 - All right reserved by Damian.</p>
+    <p className="font-tilt">Copyright © 2024 - All rights reserved by Damian.</p>
     <p className="font-tilt">Made with ❤️ by Damian.</p>
   </aside>
 </footer>
