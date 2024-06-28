@@ -44,7 +44,7 @@ export async function deleteUser(email: string) {
 
 export async function getAllusers() {
   try {
-    let res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/getAllL`, {
+    let res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/getAll`, {
       headers: adminAuth,
     });
     return res.data.data;
