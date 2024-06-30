@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Genres from "../util/Genres.json";
@@ -87,7 +88,8 @@ export default function Stream() {
                 className="w-20 font-tilt rounded bg-black"
                 startIcon={<PlayArrow />}
                 onClick={() => {
-                  setPlayStatus(true);
+                  // setPlayStatus(true);
+                  window.location.href = import.meta.env.VITE_STREAMING_URL+ md.id;
                 }}
               >
                 Play.

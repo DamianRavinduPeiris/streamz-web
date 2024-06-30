@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Genres from "../util/Genres.json";
@@ -72,7 +73,8 @@ export default function TVStream() {
                 className="w-20 font-tilt rounded bg-black"
                 startIcon={<PlayArrow />}
                 onClick={() => {
-                  setPlayStatus(true);
+                  // setPlayStatus(true);
+                  window.location.href =import.meta.env.VITE_TV_SHOWS_STREAMING_URL+td?.id;
                 }}
               >
                 Play.

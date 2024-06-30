@@ -4,7 +4,7 @@ interface PlayerProps {
 export default function Player({ url }: PlayerProps) {
   return (
     <div>
-      <iframe src={url} allowFullScreen></iframe>
+      <iframe src={url} allowFullScreen  ></iframe>
     </div>
   );
 }
