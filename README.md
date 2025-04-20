@@ -1,12 +1,8 @@
 # Streamz
 
-**Streamz is your ultimate streaming companion.**
+This is the **frontend** repository for **Streamz**.
 
-
-This is the **frontend** repository for **Streamz**, a web application built using the **MERN stack**.  
-It provides a clean, interactive user interface for browsing and watching movies and TV shows.
-
-The backend repository can be found [here](https://github.com/DamianRavinduPeiris/streamz-web-backend).
+The backend repository can be found in [here](https://github.com/DamianRavinduPeiris/streamz-web-backend).
 
 ## Preview
 
